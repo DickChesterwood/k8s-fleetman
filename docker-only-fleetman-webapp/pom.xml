@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.virtualpairprogrammers</groupId>
+	<artifactId>fleetman</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>fleetman</name>
+	<description>VPP's Fleet Management Application</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.2.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Dalston.SR1</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+	    <dependency>
+	      <groupId>org.springframework.boot</groupId>
+	      <artifactId>spring-boot-starter-websocket</artifactId>
+	    </dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>		
+		
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+		
+		<dependency>
+        	<groupId>org.springframework.boot</groupId>
+        	<artifactId>spring-boot-devtools</artifactId>
+        	<optional>true</optional>
+    	</dependency>
+    	
+	    <dependency>
+	        <groupId>org.springframework.boot</groupId>
+	        <artifactId>spring-boot-starter-tomcat</artifactId>
+	        <scope>provided</scope>
+	    </dependency>    	
+    	
+    	<dependency>
+    		<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-starter-security</artifactId>
+    	</dependency>    	
+    	
+   		<dependency>
+    		<groupId>org.springframework.cloud</groupId>
+    		<artifactId>spring-cloud-starter-hystrix</artifactId>
+    	</dependency>     	    
+    	
+   		<dependency>
+ 	   		<groupId>org.springframework.cloud</groupId>
+    		<artifactId>spring-cloud-starter-feign</artifactId>
+    	</dependency> 	
+    		
+   		<dependency>
+ 	   		<groupId>org.springframework.cloud</groupId>
+    		<artifactId>spring-cloud-starter-config</artifactId>
+    	</dependency> 
+    	
+    	
+    	<!--  For Spring Cloud Config. -->
+		<dependency>
+    		<groupId>org.springframework.retry</groupId>
+    		<artifactId>spring-retry</artifactId>
+    		<version>1.2.1.RELEASE</version>
+		</dependency>
+    	
+     	<dependency>
+    		<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-starter-aop</artifactId>
+    	</dependency>   	
+    	
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.6</version>
+		</dependency>
+	
+		<!-- Webjars brings in resources such as stylessheets and libraries like Jquery in as jars -->
+	    <dependency>
+	      <groupId>org.webjars</groupId>
+	      <artifactId>webjars-locator</artifactId>
+	    </dependency>
+	    <dependency>
+	      <groupId>org.webjars</groupId>
+	      <artifactId>sockjs-client</artifactId>
+	      <version>1.0.0</version>
+	    </dependency>
+	    <dependency>
+	      <groupId>org.webjars</groupId>
+	      <artifactId>stomp-websocket</artifactId>
+	      <version>2.3.3</version>
+	    </dependency>
+	    <dependency>
+	      <groupId>org.webjars</groupId>
+	      <artifactId>bootstrap</artifactId>
+	      <version>3.3.7</version>
+	    </dependency>
+	    <dependency>
+	      <groupId>org.webjars</groupId>
+	      <artifactId>jquery</artifactId>
+	      <version>3.1.0</version>
+	    </dependency>		
+	    
+	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!--  For standalone JAR file <configuration><executable>false</executable></configuration> -->
+				<configuration>
+                	<mainClass>com.virtualpairprogrammers.TomcatWARApplication</mainClass>
+            	</configuration>
+			</plugin>			
+			
+			<!-- Just add this to the <build><plugins> section of your POM and make changes appropriately -->
+			
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.21.0</version>
+			
+				<configuration>			
+			        <!--  <dockerHost>http://127.0.0.1:2375</dockerHost> -->        
+			        <!--  this is for Mac and Amazon Linux -->
+			        <!-- <dockerHost>unix:///var/run/docker.sock</dockerHost> -->
+     
+			
+			        <verbose>true</verbose>
+        			<extensions>true</extensions>
+			        		     
+					<images>
+						<image>
+							<name>virtualpairprogrammers/fleetman-production:no-netflix</name>
+							<build>
+								<dockerFileDir>${project.basedir}/src/main/docker/</dockerFileDir>
+			
+								<assembly>
+									<descriptorRef>artifact</descriptorRef>
+								</assembly>
+								<tags>
+									<tag>no-netflix</tag>
+								</tags>
+							</build>
+						</image>
+					</images>
+				</configuration>	
+				
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>build</goal>
+						</goals>
+					</execution>
+					
+					<execution>
+						<id>mydeploy</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>push</goal>
+						</goals>
+					</execution>
+					
+				</executions>
+							
+			</plugin>						
+			
+			
+		</plugins>
+		
+		<resources>
+			<resource>
+				<filtering>false</filtering>
+				<directory>src/main/resources</directory>
+			</resource>		
+		</resources>
+		
+	</build>
+	
+
+</project>

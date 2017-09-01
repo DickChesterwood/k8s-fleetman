@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  fleetman-global-config-server:
+    image: virtualpairprogrammers/fleetman-global-config-server:no-netflix
+    networks:
+      - fleetman-private-network
+
+  fleetman-queue:
+    image: virtualpairprogrammers/fleetman-queue
+    networks:
+      - fleetman-private-network
+
+  fleetman-webapp:
+    image: virtualpairprogrammers/fleetman-production:no-netflix
+    ports:
+      - '80:8080'
+    networks:
+      - fleetman-private-network
+
+  fleetman-position-simulator:
+    image: virtualpairprogrammers/fleetman-position-simulator:no-netflix
+    networks:
+      - fleetman-private-network
+
+  fleetman-position-tracker:
+    image: virtualpairprogrammers/fleetman-position-tracker:no-netflix
+    networks:
+      - fleetman-private-network
+
+networks:
+   fleetman-private-network:
+      ipam:
+        config:
+          - subnet: 172.28.0.0/16

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Fleetman Vehicle Info</title>
+
+    <link href="/styles.css" rel="stylesheet"/>
+    
+    <!-- Leaflet Maps  -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.1.0/dist/leaflet.css"
+	      integrity="sha512-wcw6ts8Anuw10Mzh9Ytw4pylW8+NAD4ch3lqm9lzAsTxg0GFeJgoAtxuCLREZSC5lUXdVyo/7yfsqFjQ4S+aKw=="
+	      crossorigin=""/>		
+	
+	<script src="https://unpkg.com/leaflet@1.1.0/dist/leaflet.js"
+	 		integrity="sha512-mNqn2Wg7tSToJhvHcqfzLMU6J4mkOImSPTxVZAdo+lcPlk+GhZmYgACEe0x35K7YzW1zJ7XyJV/TT1MrdXvMcA=="
+	 		crossorigin=""></script>
+        
+    <script src="/webjars/jquery/jquery.min.js"></script>        
+    
+    <script th:inline="javascript">
+   		var mymap;
+   		
+	    /*<![CDATA[*/		
+		$(document).ready(function(){ 
+			var lat = [[${model.position.lat}]];
+			var longitude = [[${model.position.longitude}]];
+			var vehicleName = [[${model.vehicle.name}]];
+			
+			mymap = L.map('mapid').setView([lat,longitude], 15);
+			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZGlja2NoZXN0ZXJ3b29kIiwiYSI6ImNqNG9kcHI2aDJtN2wzMnBndmU3bWkzdmgifQ.rdSmry2jgNl4jmydiypisQ', {
+	  				attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+	  				maxZoom: 18,
+			    	id: 'mapbox.streets'	  				
+			}).addTo(mymap);
+			
+			if (lat != null && longitude != null) 
+			{
+				var marker = L.marker([lat, longitude]).bindPopup("<strong>" + vehicleName + "</strong> last seen at " + [[${model.position.prettyTime}]]);
+				marker.addTo(mymap);
+				marker.openPopup();
+			}
+		});
+	    /*]]>*/
+     </script>    
+      
+    
+  </head>
+  <body>
+    <h1>Fleetman Live Vehicle Information for <strong><span th:text="${model.vehicle.name}"/></strong></h1>
+    
+    <div class="row">
+	   <div class="vehicleInfo">
+	   			
+		   <div th:switch="${model.position.isUpToDate()}">
+		     <p th:case="true">We are in live contact with this vehicle.</p>
+		     <p th:case="false" class="alarm">Lost contact with vehicle. Showing last known position.</p>		   
+		   </div> 
+		   			
+		   <p>Reported at: (<span th:text="${model.position.lat}"/>,<span th:text="${model.position.longitude}"/>)</p>
+		   <p>Time: <span th:text="${model.position.prettyTime}"/></p>
+		   <div id="mapid"></div>	   
+	   </div>
+	   
+	   
+    </div>
+
+  </body>
+</html>
