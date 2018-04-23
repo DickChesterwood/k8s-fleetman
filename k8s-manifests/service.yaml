@@ -13,5 +13,4 @@ spec:
   - name: endpoint
     port: 61616
     targetPort: 61616
-    nodePort: 30020
   type: NodePort

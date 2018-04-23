@@ -83,14 +83,14 @@
                     <verbose>true</verbose>
 					<images>
 						<image>
-							<name>virtualpairprogrammers/fleetman-position-simulator</name>
+							<name>richardchesterwood/k8s-fleetman-position-simulator</name>
 							<build>
 								<dockerFileDir>${project.basedir}/src/main/docker/</dockerFileDir>
 								<assembly>
 									<descriptorRef>artifact</descriptorRef>
 								</assembly>
 								<tags>
-									<tag>no-netflix</tag>
+									<tag>latest</tag>
 								</tags>
 							</build>
 						</image>
