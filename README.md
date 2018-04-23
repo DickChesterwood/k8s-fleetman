@@ -1,10 +1,16 @@
-# docker-only-fleetman
-The full set of microservices for Fleetman without needing a Euerka Registry.
+# k8s Fleetman
 
-Created as a working example for the Docker training course at https://www.virtualpairprogrammers.com/training-courses/Docker-Module-2-for-Java-Developers-training.html?agent=github
+A new version of "Fleetman", my thrilling example microservice architecture.
 
-Chapter 9 of the course shows how Docker's Overlay Network can exploit Round Robin DNS to support a Microservice Registry - hence making external registries such as Netflix/Spring Cloud Eureka potentially redundant. 
+This version targets Kubernetes as the orchestration system. We're going to use k8s features to achieve this, whilst simplifying the implementation - I hope no Global Config Server will be needed, as we can use k8s for this.
 
-A full extract from the course can be seen here: https://www.virtualpairprogrammers.com/tutorials/0eb05093-8b5a-4d4a-9949-5023ceb64f7f?agent=github
+This will become a training course at VirtualPairProgrammers and Udemy, aiming for release in May.
 
-For this version I haven't bothered creating separate repos - each subfolder is a separate Java microservice.
+TODO:
+
+* Upgrade the code to use k8s service discovery instead of Docker Swarm
+* Get the thing up and running
+* Get rid of global config server
+* Get the thing standing up locally
+* Get running on a cloud platform - definitely AWS but may try Azure also.
+* Investigate transforming the front end to a SPA.
