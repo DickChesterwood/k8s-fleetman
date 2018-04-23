@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: fleetman-queue
+spec:
+  selector:
+    app: queue
+  ports:
+  - name: console
+    port: 8161
+    targetPort: 8161
+    nodePort: 30010
+  - name: endpoint
+    port: 61616
+    targetPort: 61616
+    nodePort: 30020
+  type: NodePort
