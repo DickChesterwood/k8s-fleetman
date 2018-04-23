@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: queue-replicaset
+  labels:
+    app: deployment
+spec:
+  # this replicas value is default
+  # modify it according to your case
+  replicas: 1
+  selector:
+    matchLabels:
+      app: queue
+  template:
+    metadata:
+      labels:
+        app: queue
+    spec:
+      containers:
+      - name: fleetman-queue
+        image: richardchesterwood/k8s-fleetman-queue
+        ports:
+        - containerPort: 8161
