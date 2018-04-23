@@ -61,4 +61,24 @@ spec:
       containers:
       - name: fleetman-position-tracker
         image: richardchesterwood/k8s-fleetman-position-tracker
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: webapp-replicaset
+  labels:
+    app: webapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - name: fleetman-webapp
+        image: richardchesterwood/k8s-fleetman-webapp
  
