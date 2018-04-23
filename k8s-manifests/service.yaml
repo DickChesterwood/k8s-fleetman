@@ -14,3 +14,16 @@ spec:
     port: 61616
     targetPort: 61616
   type: NodePort
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: fleetman-tracker
+spec:
+  selector:
+    app: tracker
+  ports:
+  - name: http
+    port: 8080
+    nodePort: 30020
+  type: NodePort
