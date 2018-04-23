@@ -41,4 +41,24 @@ spec:
       containers:
       - name: fleetman-position-simulator
         image: richardchesterwood/k8s-fleetman-position-simulator
-     
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: tracker-replicaset
+  labels:
+    app: tracker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tracker
+  template:
+    metadata:
+      labels:
+        app: tracker
+    spec:
+      containers:
+      - name: fleetman-position-tracker
+        image: richardchesterwood/k8s-fleetman-position-tracker
+ 
