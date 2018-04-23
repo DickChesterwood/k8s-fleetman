@@ -3,7 +3,7 @@ kind: ReplicaSet
 metadata:
   name: queue-replicaset
   labels:
-    app: deployment
+    app: queue
 spec:
   # this replicas value is default
   # modify it according to your case
@@ -21,3 +21,24 @@ spec:
         image: richardchesterwood/k8s-fleetman-queue
         ports:
         - containerPort: 8161
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: simulator-replicaset
+  labels:
+    app: simulator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simulator
+  template:
+    metadata:
+       labels:
+         app: simulator
+    spec:
+      containers:
+      - name: fleetman-position-simulator
+        image: richardchesterwood/k8s-fleetman-position-simulator
+     
