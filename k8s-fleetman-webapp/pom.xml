@@ -161,10 +161,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<!--  For standalone JAR file <configuration><executable>false</executable></configuration> -->
-				<configuration>
-                	<mainClass>com.virtualpairprogrammers.TomcatWARApplication</mainClass>
-            	</configuration>
+				<configuration><executable>false</executable></configuration>
 			</plugin>			
 			
 			<!-- Just add this to the <build><plugins> section of your POM and make changes appropriately -->
@@ -185,7 +182,7 @@
 			        		     
 					<images>
 						<image>
-							<name>virtualpairprogrammers/fleetman-production:no-netflix</name>
+							<name>richardchesterwood/k8s-fleetman-webapp</name>
 							<build>
 								<dockerFileDir>${project.basedir}/src/main/docker/</dockerFileDir>
 			
@@ -193,7 +190,7 @@
 									<descriptorRef>artifact</descriptorRef>
 								</assembly>
 								<tags>
-									<tag>no-netflix</tag>
+									<tag>latest</tag>
 								</tags>
 							</build>
 						</image>

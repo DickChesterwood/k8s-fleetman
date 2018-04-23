@@ -38,7 +38,7 @@ public class Startup {
 										 "university_internal_mail_f","university_internal_mail_g"};
 	
 	@Configuration
-	@Profile({"production", "docker"})
+	@Profile({"production", "k8s"})
 	class ProductionVersion {
 		@PostConstruct
 		public void populateData()

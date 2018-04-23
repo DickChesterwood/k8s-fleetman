@@ -1,13 +1,15 @@
 package com.virtualpairprogrammers.services;
 
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.virtualpairprogrammers.controllers.Position;
 
-@FeignClient(url="fleetman-position-tracker:8080", name="fleetman-position-tracker")
+@Profile({"k8s"})
+@FeignClient(url="fleetman-tracker.default.svc.cluster.local:8080", name="fleetman-position-tracker")
 public interface RemotePositionMicroserviceCalls 
 {
 	// REST Call
