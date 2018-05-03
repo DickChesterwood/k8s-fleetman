@@ -1,0 +1,14 @@
+<h3>Latest updates</h3>
+<div class="outerBox">
+   <div *ngFor="let vehicle of vehicles">
+     <div class="checkboxDiv">
+        <input type='radio' name='vehicle' checked="checked"/>
+     </div>
+
+     <div class="vehicleInfo">
+       <p><strong>{{vehicle.name}}</strong></p>
+       <p>[{{vehicle.position}}] at {{vehicle.dateAndTime}}</p>
+       <p>Speed: {{vehicle.speed}}</p>
+     </div>
+  </div>
+</div>

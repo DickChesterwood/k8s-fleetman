@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.virtualpairprogrammers.data.VehicleRepository;
+import com.virtualpairprogrammers.domain.Position;
 import com.virtualpairprogrammers.domain.Vehicle;
 import com.virtualpairprogrammers.services.PositionTrackingExternalService;
 

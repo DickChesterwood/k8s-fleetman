@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.virtualpairprogrammers.controllers.Position;
+import com.virtualpairprogrammers.domain.Position;
 
 @Profile({"k8s"})
 @FeignClient(url="fleetman-tracker.default.svc.cluster.local:8080", name="fleetman-position-tracker")
