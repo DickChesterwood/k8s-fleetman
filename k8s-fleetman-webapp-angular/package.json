@@ -22,7 +22,10 @@
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
     "angular-in-memory-web-api": "^0.5.4",
+    "bootstrap": "^4.1.1",
     "core-js": "^2.4.1",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.3",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },
