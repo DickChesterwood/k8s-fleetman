@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.virtualpairprogrammers.controllers.Position;
 import com.virtualpairprogrammers.data.VehicleRepository;
+import com.virtualpairprogrammers.domain.Position;
 import com.virtualpairprogrammers.domain.Vehicle;
 
 @Service 

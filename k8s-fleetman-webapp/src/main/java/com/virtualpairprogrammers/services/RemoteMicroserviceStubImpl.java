@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
-import com.virtualpairprogrammers.controllers.Position;
+import com.virtualpairprogrammers.domain.Position;
 
 @Profile({"development","docker-demo"})
 @Service
