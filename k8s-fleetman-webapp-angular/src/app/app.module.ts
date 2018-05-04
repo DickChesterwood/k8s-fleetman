@@ -11,6 +11,7 @@ import { InMemoryDataService }  from './in-memory-data.service';
 import { HttpClientModule }    from '@angular/common/http';
 import { MapComponent } from './map/map.component';
 
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { MapComponent } from './map/map.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-
+    LeafletModule.forRoot(),
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
     )
