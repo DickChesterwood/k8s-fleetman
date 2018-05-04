@@ -29,10 +29,10 @@ export class MapComponent implements OnInit {
   };
 
   ngOnInit() {
-     this.vehicleService.getVehicles().subscribe (it => {
-       this.vehicles = it;
-       this.updateVehicles();
-     });
+     //this.vehicleService.getVehicles().subscribe (it => {
+    //   this.vehicles = it;
+  //     this.updateVehicles();
+  //   });
   }
 
   updateVehicles() {
