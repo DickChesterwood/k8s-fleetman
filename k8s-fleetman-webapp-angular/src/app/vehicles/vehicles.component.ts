@@ -14,7 +14,7 @@ export class VehiclesComponent implements OnInit {
   constructor(private vehicleService: VehicleService) { }
 
   ngOnInit() {
-    this.vehicleService.getVehicles().subscribe(it => this.vehicles = it);
+    this.vehicleService.getSubscription().subscribe(it => console.log(it));
   }
 
 }
