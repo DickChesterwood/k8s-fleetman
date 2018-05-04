@@ -9,12 +9,16 @@ import { VehicleService } from '../vehicle.service';
 })
 export class VehiclesComponent implements OnInit {
 
-  vehicles: Vehicle[];
+  vehicles: Vehicle[] = [];
 
   constructor(private vehicleService: VehicleService) { }
 
   ngOnInit() {
-    this.vehicleService.getSubscription().subscribe(it => console.log(it));
+    this.vehicleService.getSubscription().subscribe(updatedVehicle => {
+      let foundIndex = this.vehicles.findIndex(existingVehicle => existingVehicle.id == updatedVehicle.id);
+      if (foundIndex == -1) this.vehicles.push(updatedVehicle)
+      else this.vehicles[foundIndex] = updatedVehicle;
+    });
   }
 
 }
