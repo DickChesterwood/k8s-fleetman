@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ViewEncapsulation } from '@angular/core';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import * as L from 'leaflet';
+import { icon, latLng, Layer, marker, tileLayer } from 'leaflet';
+
+import { VehicleService } from '../vehicle.service';
+import { Vehicle } from '../vehicle';
 
 @Component({
   selector: 'app-map',
@@ -10,20 +12,41 @@ import * as L from 'leaflet';
 })
 export class MapComponent implements OnInit {
 
-  constructor() { }
+  constructor(private vehicleService: VehicleService) { }
+
+  markers: Layer[] = [];
+  vehicles: Vehicle[];
 
   options = {
     layers: [
-      L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZGlja2NoZXN0ZXJ3b29kIiwiYSI6ImNqNG9kcHI2aDJtN2wzMnBndmU3bWkzdmgifQ.rdSmry2jgNl4jmydiypisQ',
+       tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
                   { maxZoom: 18,
-                    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery Â© <a href="http://mapbox.com">Mapbox</a>',
-                    id: 'mapbox.streets',
-                    accessToken: 'your.mapbox.access.token' })
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  })
     ],
     zoom: 15,
-    center: L.latLng(53.38207,-1.48423)
+    center: latLng(53.38207,-1.48423)
   };
 
-  ngOnInit() {}
+  ngOnInit() {
+     this.vehicleService.getVehicles().subscribe (it => {
+       this.vehicles = it;
+       this.updateVehicles();
+     });
+  }
 
+  updateVehicles() {
+    this.vehicles.forEach( (vehicle) => {
+      let newMarker = marker([vehicle.lat,vehicle.lng] ,
+                              {
+                                icon: icon( {
+                                              iconSize: [ 25, 41 ],
+                                              iconAnchor: [ 11, 41 ],
+                                              iconUrl: 'assets/marker-icon.png',
+                                              shadowUrl: 'assets/marker-shadow.png'
+                                             })
+                              }).bindTooltip(vehicle.name);
+      this.markers.push(newMarker);
+    } );
+  }
 }

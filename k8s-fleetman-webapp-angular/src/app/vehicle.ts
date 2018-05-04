@@ -1,6 +1,7 @@
 export class Vehicle {
   name: string;
-  position: [number, number];
+  lat: number;
+  lng: number;
   dateAndTime: string;
   speed: number;
 }

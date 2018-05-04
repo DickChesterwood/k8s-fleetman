@@ -9,7 +9,12 @@
       "outDir": "dist",
       "assets": [
         "assets",
-        "favicon.ico"
+        "favicon.ico",
+        {
+                 "glob": "**/*",
+                 "input": "../node_modules/leaflet/dist/images",
+                 "output": "./assets/"
+        }
       ],
       "index": "index.html",
       "main": "main.ts",
@@ -20,7 +25,7 @@
       "prefix": "app",
       "styles": [
         "styles.css",
-        "../node_modules/leaflet/dist/leaflet.css"        
+        "../node_modules/leaflet/dist/leaflet.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
