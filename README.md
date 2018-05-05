@@ -8,9 +8,8 @@ This will become a training course at VirtualPairProgrammers and Udemy, aiming f
 
 TODO:
 
-* Upgrade the code to use k8s service discovery instead of Docker Swarm
-* Get the thing up and running
-* Get rid of global config server
-* Get the thing standing up locally
+* Get rid of global config server. Secrets?
 * Get running on a cloud platform - definitely AWS but may try Azure also.
-* Investigate transforming the front end to a SPA.
+* Investigate transforming the front end to a SPA. (putting this on hold due to time pressures)
+* Rolling Deployments
+* Monitoring and Logging
