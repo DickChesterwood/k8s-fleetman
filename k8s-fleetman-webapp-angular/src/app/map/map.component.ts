@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { icon, latLng, Layer, marker, tileLayer } from 'leaflet';
+import { icon, latLng, Layer, Marker, marker, tileLayer } from 'leaflet';
 
 import { VehicleService } from '../vehicle.service';
 import { Vehicle } from '../vehicle';
@@ -14,8 +14,7 @@ export class MapComponent implements OnInit {
 
   constructor(private vehicleService: VehicleService) { }
 
-  markers: Layer[] = [];
-  vehicles: Vehicle[];
+  markers: Marker[] = [];
 
   options = {
     layers: [
@@ -29,24 +28,28 @@ export class MapComponent implements OnInit {
   };
 
   ngOnInit() {
-     //this.vehicleService.getVehicles().subscribe (it => {
-    //   this.vehicles = it;
-  //     this.updateVehicles();
-  //   });
+
+     this.vehicleService.subscription.subscribe(vehicle => {
+       let foundIndex = this.markers.findIndex(existingMarker => existingMarker.options['title'] == vehicle.name);
+       let newMarker = marker([vehicle.lat,vehicle.lng] ,
+                               {
+                                 icon: icon( {
+                                               iconSize: [ 25, 41 ],
+                                               iconAnchor: [ 11, 41 ],
+                                               iconUrl: 'assets/marker-icon.png',
+                                               shadowUrl: 'assets/marker-shadow.png'
+                                             }),
+                                 title: vehicle.name
+                               }).bindTooltip(vehicle.name);
+      
+       if (foundIndex == -1) this.markers.push(newMarker);
+       else this.markers[foundIndex] = newMarker;
+     });
   }
 
-  updateVehicles() {
-    this.vehicles.forEach( (vehicle) => {
-      let newMarker = marker([vehicle.lat,vehicle.lng] ,
-                              {
-                                icon: icon( {
-                                              iconSize: [ 25, 41 ],
-                                              iconAnchor: [ 11, 41 ],
-                                              iconUrl: 'assets/marker-icon.png',
-                                              shadowUrl: 'assets/marker-shadow.png'
-                                             })
-                              }).bindTooltip(vehicle.name);
-      this.markers.push(newMarker);
-    } );
-  }
+  // getMarkers() {
+  //   return Object.keys(this.markerDictionary).map(function(key){
+  //      return this.markerDictionary[key];
+  //   });
+  // }
 }

@@ -30,15 +30,13 @@ export class VehicleService {
   constructor() {
   }
 
-  getSubscription(): Observable<number> {
-    return Observable.of("")
+  subscription : Observable<Vehicle> =Observable.of("")
                      .switchMap(() => Observable
                      .timer(500)
                      .mapTo(VehicleService.moveRandomVehicle()))
                      .repeat();
-  }
 
-  private static moveRandomVehicle(): number {
+  private static moveRandomVehicle(): Vehicle {
     let randomId = Math.floor(Math.random() * (this.vehicles.length));
     let vehicle = this.vehicles[randomId];
     vehicle.lat = VehicleService.generateRandomNumberFromRange(53.38653,53.37687);
@@ -47,7 +45,7 @@ export class VehicleService {
   }
 
   private static generateRandomNumberFromRange(min: number, max: number): number {
-    let randomNumber = min + (Math.random() * (max- min);
+    let randomNumber = min + (Math.random() * (max- min));
     return randomNumber;
   }
 }
