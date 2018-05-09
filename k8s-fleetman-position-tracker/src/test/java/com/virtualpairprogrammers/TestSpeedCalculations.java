@@ -1,11 +1,15 @@
 package com.virtualpairprogrammers;
 
-import static org.junit.Assert.*;
-
-import java.util.HashMap;
-import java.util.Map;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
+
+import com.virtualpairprogrammers.data.Data;
+import com.virtualpairprogrammers.data.DataBasicInMemoryImpl;
+import com.virtualpairprogrammers.domain.VehicleBuilder;
+import com.virtualpairprogrammers.domain.VehicleNotFoundException;
+import com.virtualpairprogrammers.domain.VehiclePosition;
 
 /**
  * These tests are based on rough measurements on a real map. Therefore, we only expect
@@ -15,28 +19,29 @@ public class TestSpeedCalculations {
 
 	@Test
 	public void testSpeedAsMeasuredBetweenTwoPointsCoveredInFiveSeconds() throws VehicleNotFoundException {
-		Data data = new Data();
+		Data data = new DataBasicInMemoryImpl();
 		
 		// These data points measured on a map
 		// 1: 53.33507, -1.53766
- 
-		Map<String, String> report1 = new HashMap<>();
-		report1.put("vehicle", "city_truck");		
-		report1.put("lat", "53.33507");
-		report1.put("long", "-1.53766");
-		report1.put("time", "Wed Jul 05 10:26:24 BST 2017");
-		
+		VehiclePosition report1 = new VehicleBuilder()
+										.withName("city_truck")
+										.withLat("53.33507")
+										.withLng("-1.53766")
+										.withTimestamp("Wed Jul 05 10:26:24 BST 2017")
+										.build();
+										
 		data.updatePosition(report1);
 		
-		Position pos = data.getLatestPositionFor("city_truck");
+		VehiclePosition pos = data.getLatestPositionFor("city_truck");
 		assertNull("Expected speed of vehicle with one report is null", pos.getSpeed());
 		
 		// Point 2 is measured at 153m apart. 53.33635, -1.53682
-		Map<String, String> report2 = new HashMap<>();
-		report2.put("vehicle", "city_truck");		
-		report2.put("lat", "53.33635");
-		report2.put("long", "-1.53682");
-		report2.put("time", "Wed Jul 05 10:26:29 BST 2017");
+		VehiclePosition report2 = new VehicleBuilder()
+				.withName("city_truck")
+				.withLat("53.33635")
+				.withLng("-1.53682")
+				.withTimestamp("Wed Jul 05 10:26:29 BST 2017")
+				.build();
 		
 		data.updatePosition(report2);
 		
@@ -51,26 +56,26 @@ public class TestSpeedCalculations {
 
 	@Test
 	public void testSpeedWhenTravellingExactlyOneKilometerInOneMinute() throws VehicleNotFoundException {
-		Data data = new Data();
+		Data data = new DataBasicInMemoryImpl();
 		
 		// These two points are on OS grid lines 1km apart, as measured by Memory Map.
-		Map<String, String> report1 = new HashMap<>();
-		report1.put("vehicle", "city_truck");		
-		report1.put("lat", "53.33393");
-		report1.put("long", "-1.52097");
-		report1.put("time", "Wed Jul 05 10:26:00 BST 2017");
-		
+		VehiclePosition report1 = new VehicleBuilder()
+				.withName("city_truck")
+				.withLat("53.33393")
+				.withLng("-1.52097")
+				.withTimestamp("Wed Jul 05 10:26:00 BST 2017")
+				.build();
 		data.updatePosition(report1);
 		
-		Position pos = data.getLatestPositionFor("city_truck");
+		VehiclePosition pos = data.getLatestPositionFor("city_truck");
 		assertNull("Expected speed of vehicle with one report is null", pos.getSpeed());
 		
-		Map<String, String> report2 = new HashMap<>();
-		report2.put("vehicle", "city_truck");		
-		report2.put("lat", "53.34292");
-		report2.put("long", "-1.52083");
-		report2.put("time", "Wed Jul 05 10:27:00 BST 2017");
-		
+		VehiclePosition report2 = new VehicleBuilder()
+				.withName("city_truck")
+				.withLat("53.34292")
+				.withLng("-1.52083")
+				.withTimestamp("Wed Jul 05 10:27:00 BST 2017")
+				.build();
 		data.updatePosition(report2);
 		
 		pos = data.getLatestPositionFor("city_truck");
@@ -81,24 +86,25 @@ public class TestSpeedCalculations {
 	
 	@Test
 	public void testStationaryVehicle() throws VehicleNotFoundException {
-		Data data = new Data();
+		Data data = new DataBasicInMemoryImpl();
 		
-		Map<String, String> report1 = new HashMap<>();
-		report1.put("vehicle", "city_truck");		
-		report1.put("lat", "53.33393");
-		report1.put("long", "-1.52097");
-		report1.put("time", "Wed Jul 05 10:26:00 BST 2017");
-		
+		VehiclePosition report1 = new VehicleBuilder()
+				.withName("city_truck")
+				.withLat("53.33393")
+				.withLng("-1.52097")
+				.withTimestamp("Wed Jul 05 10:26:00 BST 2017")
+				.build();
 		data.updatePosition(report1);
 		
-		Position pos = data.getLatestPositionFor("city_truck");
+		VehiclePosition pos = data.getLatestPositionFor("city_truck");
 		assertNull("Expected speed of vehicle with one report is null", pos.getSpeed());
 		
-		Map<String, String> report2 = new HashMap<>();
-		report2.put("vehicle", "city_truck");		
-		report2.put("lat", "53.33393");
-		report2.put("long", "-1.52097");
-		report2.put("time", "Wed Jul 05 10:26:00 BST 2017");
+		VehiclePosition report2 = new VehicleBuilder()
+				.withName("city_truck")
+				.withLat("53.33393")
+				.withLng("-1.52097")
+				.withTimestamp("Wed Jul 05 10:26:00 BST 2017")
+				.build();
 		
 		data.updatePosition(report2);
 		
@@ -109,34 +115,34 @@ public class TestSpeedCalculations {
 	
 	@Test
 	public void testSpeedIsBasedOnlyOnLastReport() throws VehicleNotFoundException {
-		Data data = new Data();
+		Data data = new DataBasicInMemoryImpl();
 		
 		// These two points are on OS grid lines 1km apart, as measured by Memory Map.
-		Map<String, String> report1 = new HashMap<>();
-		report1.put("vehicle", "city_truck");		
-		report1.put("lat", "53.33393");
-		report1.put("long", "-1.52097");
-		report1.put("time", "Wed Jul 05 10:26:00 BST 2017");
-		
+		VehiclePosition report1 = new VehicleBuilder()
+				.withName("city_truck")
+				.withLat("53.33393")
+				.withLng("-1.52097")
+				.withTimestamp("Wed Jul 05 10:26:00 BST 2017")
+				.build();
 		data.updatePosition(report1);
-				
-		Map<String, String> report2 = new HashMap<>();
-		report2.put("vehicle", "city_truck");		
-		report2.put("lat", "53.34292");
-		report2.put("long", "-1.52083");
-		report2.put("time", "Wed Jul 05 10:27:00 BST 2017");
-		
+			
+		VehiclePosition report2 = new VehicleBuilder()
+				.withName("city_truck")
+				.withLat("53.34292")
+				.withLng("-1.52083")
+				.withTimestamp("Wed Jul 05 10:27:00 BST 2017")
+				.build();
 		data.updatePosition(report2);
 		
-		Map<String, String> report3 = new HashMap<>();
-		report3.put("vehicle", "city_truck");		
-		report3.put("lat", "53.33635");
-		report3.put("long", "-1.53682");
-		report3.put("time", "Wed Jul 05 10:28:24 BST 2017");
-		
+		VehiclePosition report3 = new VehicleBuilder()
+				.withName("city_truck")
+				.withLat("53.33635")
+				.withLng("-1.53682")
+				.withTimestamp("Wed Jul 05 10:28:24 BST 2017")
+				.build();		
 		data.updatePosition(report3);
 		
-		Position pos = data.getLatestPositionFor("city_truck");
+		VehiclePosition pos = data.getLatestPositionFor("city_truck");
 		
 		// This last leg is 1.29km, and it took 84 seconds. 34.35mph 
 		assertEquals(34.35, pos.getSpeed().doubleValue(), 0.1);
