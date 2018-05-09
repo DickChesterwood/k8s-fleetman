@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Fleetman Live Tracking</title>
+
+    <link href="/styles.css" rel="stylesheet"/>
+    
+    <!-- Leaflet Maps  -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.1.0/dist/leaflet.css"
+	      integrity="sha512-wcw6ts8Anuw10Mzh9Ytw4pylW8+NAD4ch3lqm9lzAsTxg0GFeJgoAtxuCLREZSC5lUXdVyo/7yfsqFjQ4S+aKw=="
+	      crossorigin=""/>		
+	
+	<script src="https://unpkg.com/leaflet@1.1.0/dist/leaflet.js"
+	 		integrity="sha512-mNqn2Wg7tSToJhvHcqfzLMU6J4mkOImSPTxVZAdo+lcPlk+GhZmYgACEe0x35K7YzW1zJ7XyJV/TT1MrdXvMcA=="
+	 		crossorigin=""></script>
+        
+    <script src="/webjars/jquery/jquery.min.js"></script>    
+    <script type="text/javascript" src="movingMarker.js"></script>
+  
+    <script th:inline="javascript">
+   		var mymap;
+   		var markerDictionary = {};
+   		var lastMessage;
+   		
+ 			$(document).ready(function(){ 
+				mymap = L.map('mapid').setView([53.38207,-1.48423], 15);
+
+				L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZGlja2NoZXN0ZXJ3b29kIiwiYSI6ImNqNG9kcHI2aDJtN2wzMnBndmU3bWkzdmgifQ.rdSmry2jgNl4jmydiypisQ', {
+    				attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    				maxZoom: 18,
+				    id: 'mapbox.streets',
+    				accessToken: 'your.mapbox.access.token'
+				}).addTo(mymap);
+							
+			    /*<![CDATA[*/		
+			    var vehicles = [[${vehicles}]];
+			    for (i = 0; i < vehicles.length; i++) {
+			        var vehicleName = vehicles[i].name;
+			        var lat = vehicles[i].lat;
+			        var longitude = vehicles[i].longitude;
+					markerDictionary[vehicleName]=L.Marker.movingMarker([[lat, longitude]]).bindTooltip(vehicleName).addTo(mymap);  
+			    }			
+			    /*]]>*/
+		  	    
+		  	    var client = Stomp.over(new SockJS('/updates'));
+	
+	            client.connect({}, function (frame) {
+	               client.subscribe('/vehiclepositions/messages', function (message) {
+		              updateReports(JSON.parse(message.body));
+	               });
+	            });	   	   
+ 			});
+   		   		
+		    function updateReports(mesg)
+		    {
+		        var targetId = '#' + mesg.vehicleName;
+				$(targetId + " .vehicleInfo").replaceWith('<div class="vehicleInfo" id="' + mesg.vehicleName + '"><p><strong><a href="/vehicle/' + mesg.vehicleName + '	">' + mesg.vehicleName + '</a></strong></p><p>' + mesg.prettyTime + '</p>' + '<p>Speed: ' + mesg.speed + '</p></div>');
+
+				var mymarker = markerDictionary[mesg.vehicleName]
+				mymarker.moveTo([mesg.lat, mesg.longitude],5000);			
+				
+				// If this radio button is checked, center the map on this vehicle
+
+				if($(targetId + "-radio").is(':checked'))
+				{
+				  mymap.setView([mesg.lat,mesg.longitude], mymap.getZoom(), {
+				   	  "animate": true,
+  "pan": {
+    "duration": 5
+  }
+				  }); 
+				}
+		    }    
+     </script>    
+  
+     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+     <script src="/webjars/stomp-websocket/stomp.min.js"></script>  
+        
+  </head>
+  <body>
+    <h1>Fleetman Live Tracking</h1>
+    
+    <div class="row">
+  		<div id="mapid"></div>
+		<div id="positionData">
+			<h3>Latest updates</h3>
+			<div class="outerBox" th:each="vehicle,iter : ${vehicles}" th:id="${vehicle.name}">
+			   <div class="checkboxDiv">
+			   		<input type='radio' name='vehicle' th:id="${vehicle.name} + '-radio'" checked="checked" th:if="${iter.index eq 0}"/>
+			   		<input type='radio' name='vehicle' th:id="${vehicle.name} + '-radio'" th:if="${iter.index gt 0}"/>				   		
+			   </div>
+			   		
+			   <div class="vehicleInfo">			
+				   <p><strong><a th:href="@{~/vehicle/{name}(name=${vehicle.name})}"><span th:text="${vehicle.name}"/></a></strong></p>
+				   <p>No updates</p>
+				   <p>Speed: unreported</p>
+			   </div>
+		    </div>
+		</div>
+    </div>
+
+	<div id="dev" th:if="${@environment.getActiveProfiles()[0] == 'docker-demo' || @environment.getActiveProfiles()[0] == 'development'}">
+	  <p>Running in local development mode with random and chaotic position data.</p>
+	</div>
+
+  </body>
+</html>
