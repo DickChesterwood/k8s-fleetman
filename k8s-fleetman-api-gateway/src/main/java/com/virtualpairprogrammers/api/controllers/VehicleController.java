@@ -13,7 +13,8 @@ import com.virtualpairprogrammers.api.domain.VehiclePosition;
 import com.virtualpairprogrammers.api.services.PositionTrackingExternalService;
 
 @Controller
-@RequestMapping("/api")
+@RequestMapping("/")
+// TODO this doesn't look much like a controller anymore!
 public class VehicleController 
 {	
 	@Autowired
@@ -28,7 +29,8 @@ public class VehicleController
     public void updatePositions()
     {
     	Collection<VehiclePosition> results = externalService.getAllUpdatedPositionsSince(lastUpdateTime);
-    	lastUpdateTime = new Date();
+    	this.lastUpdateTime = new Date();
+    	System.out.println("Received " + results.size() + " updates. Since is " + this.lastUpdateTime);
     	for (VehiclePosition next: results)
     	{
     		System.out.println("updated position for " + next.getName());
