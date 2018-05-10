@@ -29,6 +29,12 @@ public class VehicleBuilder
 		} 
 	}
 	
+	public VehicleBuilder withTimestamp(Date date)
+	{
+		this.timestamp = date;
+		return this;
+	}
+	
 	public VehicleBuilder withName(String name)
 	{
 		this.name = name;
