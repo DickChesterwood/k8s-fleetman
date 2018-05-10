@@ -54,7 +54,7 @@ public class VehicleBuilder
 	
 	public VehiclePosition build()
 	{
-		return new VehiclePosition(name, lat, lng, timestamp);
+		return new VehiclePosition(name, lat, lng, timestamp, speed);
 	}
 
 	public VehicleBuilder withLat(String lat) {

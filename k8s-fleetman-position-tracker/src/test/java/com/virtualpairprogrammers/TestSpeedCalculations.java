@@ -103,7 +103,7 @@ public class TestSpeedCalculations {
 				.withName("city_truck")
 				.withLat("53.33393")
 				.withLng("-1.52097")
-				.withTimestamp("Wed Jul 05 10:26:00 BST 2017")
+				.withTimestamp("Wed Jul 05 10:26:05 BST 2017")
 				.build();
 		
 		data.updatePosition(report2);
