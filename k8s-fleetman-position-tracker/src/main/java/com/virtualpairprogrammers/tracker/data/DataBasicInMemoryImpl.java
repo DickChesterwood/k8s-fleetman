@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -97,9 +98,9 @@ public class DataBasicInMemoryImpl implements Data
 	}
 
 	// TODO factor this out or something
-	private Collection<VehiclePosition> getAllReportsForVehicleSince(String name, Date timestamp) throws VehicleNotFoundException {
+	private TreeSet<VehiclePosition> getAllReportsForVehicleSince(String name, Date timestamp) throws VehicleNotFoundException {
 		// Could use a Java 8 lambda to filter the collection but I'm playing safe in targeting Java 7
-		Set<VehiclePosition> results = new HashSet<>();
+		TreeSet<VehiclePosition> results = new TreeSet<>();
 		TreeSet<VehiclePosition> vehicleReports = this.positionDatabase.get(name);
 		if (vehicleReports == null) throw new VehicleNotFoundException();
 		
@@ -121,8 +122,35 @@ public class DataBasicInMemoryImpl implements Data
 	}
 
 	@Override
-	public Collection<VehiclePosition> getAllReportsForVehicleSince(String vehicleName, String timestamp) throws VehicleNotFoundException {
+	public TreeSet<VehiclePosition> getAllReportsForVehicleSince(String vehicleName, String timestamp) throws VehicleNotFoundException {
 		Date convertedTime = new VehicleBuilder().withTimestamp(timestamp).build().getTimestamp();
 		return getAllReportsForVehicleSince(vehicleName, convertedTime);
+	}
+
+	@Override
+	public Set<VehiclePosition> getLatestPositionsOfAllVehiclesUpdatedSince(Date since) {
+		Set<VehiclePosition> results = new HashSet<>();
+
+		for (String vehicleName: this.positionDatabase.keySet())
+		{
+			TreeSet<VehiclePosition> reports;
+			try 
+			{
+				reports = this.getAllReportsForVehicleSince(vehicleName, since);
+				if (!reports.isEmpty()) results.add(reports.first());				
+			} 
+			catch (VehicleNotFoundException e) 
+			{
+				// Can't happen as we know the vehicle exists
+				assert false;
+			}
+		}
+		return results;
+	}
+
+	@Override
+	public Collection<VehiclePosition> getLatestPositionsOfAllVehiclesUpdatedSince(String timestamp) {
+		Date convertedTime = new VehicleBuilder().withTimestamp(timestamp).build().getTimestamp();
+		return getLatestPositionsOfAllVehiclesUpdatedSince(convertedTime);
 	}
 }
