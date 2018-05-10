@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,7 +38,7 @@ public class PositionReportsController
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="/vehicles/")
-	public Collection<VehiclePosition> getUpdatedPositions(@RequestParam(value="since", required=false) Date since)
+	public Collection<VehiclePosition> getUpdatedPositions(@RequestParam(value="since", required=false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date since)
 	{
 		return data.getLatestPositionsOfAllVehiclesUpdatedSince(since);
 	}
