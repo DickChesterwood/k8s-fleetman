@@ -37,8 +37,8 @@ public class PositionReportsController
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="/vehicles/")
-	public ResponseEntity<List<VehiclePosition>> getUpdatedPositions(@RequestParam(value="since", required=false) Date since)
+	public List<VehiclePosition> getUpdatedPositions(@RequestParam(value="since", required=false) Date since)
 	{
-		throw new UnsupportedOperationException();
+		return data.getLatestPositionsOfAllVehiclesUpdatedSince(since);
 	}
 }
