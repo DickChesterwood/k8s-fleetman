@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.junit.Test;
 
@@ -109,4 +110,15 @@ public class TestInMemoryOpsOnMultipleVehicles {
 		assertFalse(results.contains(thirdReportVehicle1));
 		assertTrue(results.contains(fourthReportVehicle2));
 	}
+	
+	@Test
+	public void testGettingAllReportsWithNoSinceReturnsAllLatestReports() {
+		testData.addAllReports(allReports);
+		
+		Date timeStamp = null;
+		Collection<VehiclePosition> results = testData.getLatestPositionsOfAllVehiclesUpdatedSince(timeStamp);
+		assertEquals(2, results.size());
+		assertTrue(results.contains(thirdReportVehicle1));
+		assertTrue(results.contains(fourthReportVehicle2));
+	}		
 }

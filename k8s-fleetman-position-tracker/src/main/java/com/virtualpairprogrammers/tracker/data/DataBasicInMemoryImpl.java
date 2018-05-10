@@ -99,25 +99,14 @@ public class DataBasicInMemoryImpl implements Data
 
 	// TODO factor this out or something
 	private TreeSet<VehiclePosition> getAllReportsForVehicleSince(String name, Date timestamp) throws VehicleNotFoundException {
+		if (timestamp == null) timestamp = new java.util.Date(1);
+		
 		// Could use a Java 8 lambda to filter the collection but I'm playing safe in targeting Java 7
-		TreeSet<VehiclePosition> results = new TreeSet<>();
 		TreeSet<VehiclePosition> vehicleReports = this.positionDatabase.get(name);
 		if (vehicleReports == null) throw new VehicleNotFoundException();
 		
-		// TODO replace with headset or tailset!
-		for (VehiclePosition next: vehicleReports)
-		{
-			Date timeStampOfHistoricReport = next.getTimestamp();
-			if (timeStampOfHistoricReport.compareTo(timestamp) >= 0)
-			{
-				results.add(next);
-			}
-			else
-			{
-				// the treeset is ordered by timestamp, so we know that this report and all subsequent ones are too old.
-				break;
-			}
-		}
+		VehiclePosition example = new VehicleBuilder().withName(name).withTimestamp(timestamp).build();
+		TreeSet<VehiclePosition> results = (TreeSet<VehiclePosition>)(vehicleReports.headSet(example, true));
 		return results;
 	}
 
