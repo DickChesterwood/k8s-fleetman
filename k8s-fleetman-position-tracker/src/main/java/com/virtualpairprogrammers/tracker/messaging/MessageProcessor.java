@@ -1,4 +1,4 @@
-package com.virtualpairprogrammers;
+package com.virtualpairprogrammers.tracker.messaging;
 
 import java.math.BigDecimal;
 import java.util.Map;
@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
-import com.virtualpairprogrammers.data.Data;
-import com.virtualpairprogrammers.domain.VehicleBuilder;
-import com.virtualpairprogrammers.domain.VehiclePosition;
+import com.virtualpairprogrammers.tracker.data.Data;
+import com.virtualpairprogrammers.tracker.domain.VehicleBuilder;
+import com.virtualpairprogrammers.tracker.domain.VehiclePosition;
 
 @Component
 public class MessageProcessor {
