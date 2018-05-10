@@ -1,9 +1,9 @@
-package com.virtualpairprogrammers.data;
+package com.virtualpairprogrammers.tracker.data;
 
 import java.util.Collection;
 
-import com.virtualpairprogrammers.domain.VehicleNotFoundException;
-import com.virtualpairprogrammers.domain.VehiclePosition;
+import com.virtualpairprogrammers.tracker.domain.VehicleNotFoundException;
+import com.virtualpairprogrammers.tracker.domain.VehiclePosition;
 
 public interface Data {
 

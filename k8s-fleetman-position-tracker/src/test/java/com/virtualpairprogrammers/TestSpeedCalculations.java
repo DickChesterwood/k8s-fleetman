@@ -5,11 +5,11 @@ import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
-import com.virtualpairprogrammers.data.Data;
-import com.virtualpairprogrammers.data.DataBasicInMemoryImpl;
-import com.virtualpairprogrammers.domain.VehicleBuilder;
-import com.virtualpairprogrammers.domain.VehicleNotFoundException;
-import com.virtualpairprogrammers.domain.VehiclePosition;
+import com.virtualpairprogrammers.tracker.data.Data;
+import com.virtualpairprogrammers.tracker.data.DataBasicInMemoryImpl;
+import com.virtualpairprogrammers.tracker.domain.VehicleBuilder;
+import com.virtualpairprogrammers.tracker.domain.VehicleNotFoundException;
+import com.virtualpairprogrammers.tracker.domain.VehiclePosition;
 
 /**
  * These tests are based on rough measurements on a real map. Therefore, we only expect

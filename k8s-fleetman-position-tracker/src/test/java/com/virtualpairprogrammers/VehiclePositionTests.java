@@ -5,8 +5,8 @@ import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Test;
 
-import com.virtualpairprogrammers.domain.VehicleBuilder;
-import com.virtualpairprogrammers.domain.VehiclePosition;
+import com.virtualpairprogrammers.tracker.domain.VehicleBuilder;
+import com.virtualpairprogrammers.tracker.domain.VehiclePosition;
 
 public class VehiclePositionTests {
 

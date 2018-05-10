@@ -1,4 +1,4 @@
-package com.virtualpairprogrammers.data;
+package com.virtualpairprogrammers.tracker.data;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -15,9 +15,9 @@ import org.gavaghan.geodesy.GeodeticCalculator;
 import org.gavaghan.geodesy.GlobalPosition;
 import org.springframework.stereotype.Repository;
 
-import com.virtualpairprogrammers.domain.VehicleBuilder;
-import com.virtualpairprogrammers.domain.VehicleNotFoundException;
-import com.virtualpairprogrammers.domain.VehiclePosition;
+import com.virtualpairprogrammers.tracker.domain.VehicleBuilder;
+import com.virtualpairprogrammers.tracker.domain.VehicleNotFoundException;
+import com.virtualpairprogrammers.tracker.domain.VehiclePosition;
 
 /**
  * This is a quick and dirty dev-standin (for local testing) that stores vehicle position reports
