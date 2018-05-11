@@ -27,8 +27,8 @@ import com.virtualpairprogrammers.tracker.domain.VehiclePosition;
 public class LocalDevelopmentMessageSender 
 {
 	private static final String testVehicleName = "truck";
-	private static final BigDecimal startLat = new BigDecimal("51.509865");
-	private static final BigDecimal startLng = new BigDecimal("-0.118092");
+	private static final BigDecimal startLat = new BigDecimal("53.383882");
+	private static final BigDecimal startLng = new BigDecimal("-1.483979");
 	
 	private VehiclePosition lastPosition;
 	
@@ -57,7 +57,7 @@ public class LocalDevelopmentMessageSender
 		double randomChangeY = (Math.random() - 0.5) / 1000;
 		
 		BigDecimal newLat = lastPosition.getLat().add(new BigDecimal("" + randomChangeX));
-		BigDecimal newLng = lastPosition.getLat().add(new BigDecimal("" + randomChangeY));
+		BigDecimal newLng = lastPosition.getLongitude().add(new BigDecimal("" + randomChangeY));
 		
 		VehiclePosition newPostion = new VehicleBuilder().withName(testVehicleName)
 				                                         .withLat(newLat)
