@@ -29,7 +29,8 @@ export class MapComponent implements OnInit {
 
   ngOnInit() {
 
-     // this.vehicleService.messages.subscribe(vehicle => {
+     this.vehicleService.subscription.subscribe(vehicle => {
+       console.log("BANG!!!!! got an update for vehicle " + vehicle.name);
      //   let foundIndex = this.markers.findIndex(existingMarker => existingMarker.options['title'] == vehicle.name);
      //   let newMarker = marker([vehicle.lat,vehicle.lng] ,
      //                           {
@@ -44,7 +45,7 @@ export class MapComponent implements OnInit {
      //
      //   if (foundIndex == -1) this.markers.push(newMarker);
      //   else this.markers[foundIndex] = newMarker;
-     // });
+     });
   }
 
   // getMarkers() {
