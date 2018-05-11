@@ -1,4 +1,4 @@
-import { Injectable, OnInit, OnDestroy } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Vehicle } from './vehicle';
 import { Observable ,  Subscription } from 'rxjs';
 
@@ -9,66 +9,42 @@ import { catchError, map, tap } from 'rxjs/operators';
 import {Message} from '@stomp/stompjs';
 import {StompService} from '@stomp/ng2-stompjs';
 
-@Injectable()
-export class VehicleService implements OnInit, OnDestroy {
+import { from } from 'rxjs/observable/from';
 
-  subscription: Subscription;
-  private messages: Observable<Message>;
-  private subscribed: boolean;
+@Injectable()
+export class VehicleService  {
 
   static vehicles: Vehicle[] = [];
 
-  constructor(private _stompService: StompService) {
-    console.log("constructor...............................");
-    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!on init");
-    this.subscribed = false;
+  subscription = from(VehicleService.vehicles);
 
+  constructor(private _stompService: StompService) {
     // Store local reference to Observable
     // for use with template ( | async )
     this.subscribe();
   }
 
   subscribe() {
-
-    if (this.subscribed) {
-      return;
-    }
-console.log("subscribing...");
     // Stream of messages
-    this.messages = this._stompService.subscribe('/vehiclepositions/messages');
+    var messages = this._stompService.subscribe('/vehiclepositions/messages');
 
     // Subscribe a function to be run on_next message
-    this.subscription = this.messages.subscribe(this.onMessage);
-
-    this.subscribed = true;
+    messages.subscribe(this.onMessage);
   }
 
   /** Consume a message from the _stompService */
   onMessage = (message: Message) => {
-
-    // Store message in "historic messages" queue
-    // TODO this will of course be an update of the vehicle, or a new one if not already here...
+    // update vehicle and notify
+    VehicleService.vehicles.push( { id: 0,
+      name: "City Truck",
+      lat: 53.376972,
+      lng: -1.467061,
+      dateAndTime: '30 April 2018 16:20',
+      speed: 14.2
+    });
 
     // Log it to the console
     console.log(message);
-  }
-
-  private unsubscribe() {
-    if (!this.subscribed) {
-      return;
-    }
-
-    // This will internally unsubscribe from Stomp Broker
-    // There are two subscriptions - one created explicitly, the other created in the template by use of 'async'
-    this.subscription.unsubscribe();
-    this.subscription = null;
-    this.messages = null;
-
-    this.subscribed = false;
-  }
-
-  ngOnDestroy() {
-    this.unsubscribe();
   }
 
 }
