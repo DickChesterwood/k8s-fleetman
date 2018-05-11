@@ -1,0 +1,295 @@
+2018-05-08 09:58:43.547  INFO 1 --- [           main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@66cd51c3: startup date [Tue May 08 09:58:43 UTC 2018]; root of context hierarchy
+2018-05-08 09:58:44.267  INFO 1 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'configurationPropertiesRebinderAutoConfiguration' of type [class org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$7c1f9711] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.4.0.RELEASE)
+
+2018-05-08 09:58:44.908  INFO 1 --- [           main] c.c.c.ConfigServicePropertySourceLocator : Fetching config from server at: http://localhost:8888
+2018-05-08 09:58:45.096  WARN 1 --- [           main] c.c.c.ConfigServicePropertySourceLocator : Could not locate PropertySource: I/O error on GET request for "http://localhost:8888/application/docker": Connection refused (Connection refused); nested exception is java.net.ConnectException: Connection refused (Connection refused)
+2018-05-08 09:58:45.098  INFO 1 --- [           main] c.v.PositionsimulatorApplication         : The following profiles are active: docker
+2018-05-08 09:58:45.142  INFO 1 --- [           main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@483bf400: startup date [Tue May 08 09:58:45 UTC 2018]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@66cd51c3
+2018-05-08 09:58:45.976  WARN 1 --- [           main] o.s.c.a.ConfigurationClassPostProcessor  : Cannot enhance @Configuration bean definition 'refreshScope' since its singleton instance has been created too early. The typical cause is a non-static @Bean method with a BeanDefinitionRegistryPostProcessor return type: Consider declaring such methods as 'static'.
+2018-05-08 09:58:46.098  INFO 1 --- [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=c631bd09-a949-3cb7-a538-c41c86859f47
+2018-05-08 09:58:46.547  INFO 1 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [class org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$7c1f9711] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-05-08 09:58:47.654  INFO 1 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2018-05-08 09:58:47.763  INFO 1 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'configurationPropertiesRebinder' has been autodetected for JMX exposure
+2018-05-08 09:58:47.769  INFO 1 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'refreshScope' has been autodetected for JMX exposure
+2018-05-08 09:58:47.777  INFO 1 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Bean with name 'environmentManager' has been autodetected for JMX exposure
+2018-05-08 09:58:47.785  INFO 1 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'environmentManager': registering with JMX server as MBean [org.springframework.cloud.context.environment:name=environmentManager,type=EnvironmentManager]
+2018-05-08 09:58:47.840  INFO 1 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'refreshScope': registering with JMX server as MBean [org.springframework.cloud.context.scope.refresh:name=refreshScope,type=RefreshScope]
+2018-05-08 09:58:47.873  INFO 1 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Located managed bean 'configurationPropertiesRebinder': registering with JMX server as MBean [org.springframework.cloud.context.properties:name=configurationPropertiesRebinder,context=483bf400,type=ConfigurationPropertiesRebinder]
+2018-05-08 09:58:48.106  INFO 1 --- [           main] o.s.c.support.DefaultLifecycleProcessor  : Starting beans in phase 2147483647
+2018-05-08 09:58:48.143  INFO 1 --- [           main] c.v.PositionsimulatorApplication         : Started PositionsimulatorApplication in 5.877 seconds (JVM running for 6.749)
+2018-05-08 09:58:48.144  INFO 1 --- [           main] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@483bf400: startup date [Tue May 08 09:58:45 UTC 2018]; parent: org.springframework.context.annotation.AnnotationConfigApplicationContext@66cd51c3
+2018-05-08 09:58:48.147  INFO 1 --- [           main] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 2147483647
+2018-05-08 09:58:48.150  INFO 1 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2018-05-08 09:58:48.151  INFO 1 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans
+2018-05-08 09:59:19.926  WARN 1 --- [pool-1-thread-6] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.927  WARN 1 --- [ool-1-thread-22] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.928  WARN 1 --- [pool-1-thread-5] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.928  WARN 1 --- [pool-1-thread-3] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.928  WARN 1 --- [pool-1-thread-7] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.928  WARN 1 --- [pool-1-thread-8] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.928  WARN 1 --- [ool-1-thread-13] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.929  WARN 1 --- [ool-1-thread-14] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.929  WARN 1 --- [ool-1-thread-10] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.929  WARN 1 --- [ool-1-thread-38] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.929  WARN 1 --- [ool-1-thread-19] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.929  WARN 1 --- [pool-1-thread-9] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.929  WARN 1 --- [pool-1-thread-1] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.929  WARN 1 --- [ool-1-thread-17] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.929  WARN 1 --- [ool-1-thread-32] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.929  WARN 1 --- [ool-1-thread-18] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.929  WARN 1 --- [ool-1-thread-28] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.929  WARN 1 --- [ool-1-thread-29] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.929  WARN 1 --- [ool-1-thread-23] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.929  WARN 1 --- [ool-1-thread-30] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.929  WARN 1 --- [ool-1-thread-37] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.929  WARN 1 --- [ool-1-thread-34] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.929  WARN 1 --- [ool-1-thread-25] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.929  WARN 1 --- [ool-1-thread-24] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.930  WARN 1 --- [ool-1-thread-27] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.930  WARN 1 --- [ool-1-thread-26] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.930  WARN 1 --- [ool-1-thread-36] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.930  WARN 1 --- [ool-1-thread-35] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.930  WARN 1 --- [ool-1-thread-12] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.930  WARN 1 --- [ool-1-thread-11] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.930  WARN 1 --- [pool-1-thread-4] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.930  WARN 1 --- [pool-1-thread-2] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.930  WARN 1 --- [ool-1-thread-15] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.930  WARN 1 --- [ool-1-thread-16] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.930  WARN 1 --- [ool-1-thread-21] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.930  WARN 1 --- [ool-1-thread-31] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.929  WARN 1 --- [ool-1-thread-33] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:19.929  WARN 1 --- [ool-1-thread-20] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:56.669  WARN 1 --- [pool-1-thread-5] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+Exception in thread "ActiveMQ InactivityMonitor Worker" java.util.concurrent.RejectedExecutionException: Task org.apache.activemq.ActiveMQConnection$6@5870a1bd rejected from java.util.concurrent.ThreadPoolExecutor@56b744c3[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0]
+	at java.util.concurrent.ThreadPoolExecutor$AbortPolicy.rejectedExecution(ThreadPoolExecutor.java:2047)
+	at java.util.concurrent.ThreadPoolExecutor.reject(ThreadPoolExecutor.java:823)
+	at java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:1369)
+	at org.apache.activemq.ActiveMQConnection.onException(ActiveMQConnection.java:1988)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.ResponseCorrelator.onException(ResponseCorrelator.java:126)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.WireFormatNegotiator.onException(WireFormatNegotiator.java:173)
+	at org.apache.activemq.transport.AbstractInactivityMonitor.onException(AbstractInactivityMonitor.java:344)
+	at org.apache.activemq.transport.AbstractInactivityMonitor$1$1.run(AbstractInactivityMonitor.java:91)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+2018-05-08 09:59:56.951  WARN 1 --- [pool-1-thread-2] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+2018-05-08 09:59:56.952  WARN 1 --- [ool-1-thread-28] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:56.953  WARN 1 --- [ool-1-thread-36] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:56.953  WARN 1 --- [ool-1-thread-17] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:56.953  WARN 1 --- [ool-1-thread-26] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:56.953  WARN 1 --- [ool-1-thread-35] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:56.953  WARN 1 --- [ool-1-thread-11] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:56.953  WARN 1 --- [ool-1-thread-16] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:56.953  WARN 1 --- [ool-1-thread-21] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:56.953  WARN 1 --- [ool-1-thread-24] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:56.952  WARN 1 --- [ool-1-thread-25] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:57.124  WARN 1 --- [pool-1-thread-9] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:57.124  WARN 1 --- [ool-1-thread-19] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:57.124  WARN 1 --- [ool-1-thread-13] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:57.124  WARN 1 --- [pool-1-thread-1] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:57.124  WARN 1 --- [ool-1-thread-29] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:57.124  WARN 1 --- [pool-1-thread-6] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:57.144  WARN 1 --- [ool-1-thread-10] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:57.189  WARN 1 --- [pool-1-thread-3] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:57.189  WARN 1 --- [ool-1-thread-23] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:57.189  WARN 1 --- [ool-1-thread-22] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:57.189  WARN 1 --- [ool-1-thread-33] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:57.189  WARN 1 --- [ool-1-thread-18] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:57.189  WARN 1 --- [ool-1-thread-30] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:57.189  WARN 1 --- [ool-1-thread-37] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:57.189  WARN 1 --- [ool-1-thread-15] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:57.190  WARN 1 --- [pool-1-thread-4] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:57.202  WARN 1 --- [pool-1-thread-7] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:57.222  WARN 1 --- [ool-1-thread-38] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:57.222  WARN 1 --- [ool-1-thread-20] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:57.223  WARN 1 --- [ool-1-thread-34] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:57.223  WARN 1 --- [ool-1-thread-27] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:57.223  WARN 1 --- [ool-1-thread-32] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:57.226  WARN 1 --- [ool-1-thread-14] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:57.248  WARN 1 --- [ool-1-thread-31] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:57.226  WARN 1 --- [ool-1-thread-12] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 09:59:57.337  WARN 1 --- [pool-1-thread-8] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+Exception in thread "ActiveMQ InactivityMonitor Worker" java.util.concurrent.RejectedExecutionException: Task org.apache.activemq.ActiveMQConnection$6@2508ca3c rejected from java.util.concurrent.ThreadPoolExecutor@21374a45[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0]
+	at java.util.concurrent.ThreadPoolExecutor$AbortPolicy.rejectedExecution(ThreadPoolExecutor.java:2047)
+	at java.util.concurrent.ThreadPoolExecutor.reject(ThreadPoolExecutor.java:823)
+	at java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:1369)
+	at org.apache.activemq.ActiveMQConnection.onException(ActiveMQConnection.java:1988)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.ResponseCorrelator.onException(ResponseCorrelator.java:126)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.WireFormatNegotiator.onException(WireFormatNegotiator.java:173)
+	at org.apache.activemq.transport.AbstractInactivityMonitor.onException(AbstractInactivityMonitor.java:344)
+	at org.apache.activemq.transport.AbstractInactivityMonitor$1$1.run(AbstractInactivityMonitor.java:91)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+2018-05-08 10:00:31.895  WARN 1 --- [pool-1-thread-5] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:32.023  WARN 1 --- [pool-1-thread-2] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:32.082  WARN 1 --- [ool-1-thread-28] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+Exception in thread "ActiveMQ InactivityMonitor Worker" java.util.concurrent.RejectedExecutionException: Task org.apache.activemq.ActiveMQConnection$6@45554779 rejected from java.util.concurrent.ThreadPoolExecutor@416adb0b[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0]
+	at java.util.concurrent.ThreadPoolExecutor$AbortPolicy.rejectedExecution(ThreadPoolExecutor.java:2047)
+	at java.util.concurrent.ThreadPoolExecutor.reject(ThreadPoolExecutor.java:823)
+	at java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:1369)
+	at org.apache.activemq.ActiveMQConnection.onException(ActiveMQConnection.java:1988)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.ResponseCorrelator.onException(ResponseCorrelator.java:126)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.WireFormatNegotiator.onException(WireFormatNegotiator.java:173)
+	at org.apache.activemq.transport.AbstractInactivityMonitor.onException(AbstractInactivityMonitor.java:344)
+	at org.apache.activemq.transport.AbstractInactivityMonitor$1$1.run(AbstractInactivityMonitor.java:91)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+2018-05-08 10:00:32.423  WARN 1 --- [ool-1-thread-25] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:32.421  WARN 1 --- [ool-1-thread-13] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+Exception in thread "ActiveMQ InactivityMonitor Worker" java.util.concurrent.RejectedExecutionException: Task org.apache.activemq.ActiveMQConnection$6@3acf34a4 rejected from java.util.concurrent.ThreadPoolExecutor@3ef0a725[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0]
+	at java.util.concurrent.ThreadPoolExecutor$AbortPolicy.rejectedExecution(ThreadPoolExecutor.java:2047)
+	at java.util.concurrent.ThreadPoolExecutor.reject(ThreadPoolExecutor.java:823)
+	at java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:1369)
+	at org.apache.activemq.ActiveMQConnection.onException(ActiveMQConnection.java:1988)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.ResponseCorrelator.onException(ResponseCorrelator.java:126)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.WireFormatNegotiator.onException(WireFormatNegotiator.java:173)
+	at org.apache.activemq.transport.AbstractInactivityMonitor.onException(AbstractInactivityMonitor.java:344)
+	at org.apache.activemq.transport.AbstractInactivityMonitor$1$1.run(AbstractInactivityMonitor.java:91)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+Exception in thread "ActiveMQ InactivityMonitor Worker" java.util.concurrent.RejectedExecutionException: Task org.apache.activemq.ActiveMQConnection$6@7d6b009b rejected from java.util.concurrent.ThreadPoolExecutor@79548bee[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0]
+	at java.util.concurrent.ThreadPoolExecutor$AbortPolicy.rejectedExecution(ThreadPoolExecutor.java:2047)
+	at java.util.concurrent.ThreadPoolExecutor.reject(ThreadPoolExecutor.java:823)
+	at java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:1369)
+	at org.apache.activemq.ActiveMQConnection.onException(ActiveMQConnection.java:1988)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.ResponseCorrelator.onException(ResponseCorrelator.java:126)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.WireFormatNegotiator.onException(WireFormatNegotiator.java:173)
+	at org.apache.activemq.transport.AbstractInactivityMonitor.onException(AbstractInactivityMonitor.java:344)
+	at org.apache.activemq.transport.AbstractInactivityMonitor$1$1.run(AbstractInactivityMonitor.java:91)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+2018-05-08 10:00:32.489  WARN 1 --- [ool-1-thread-17] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+Exception in thread "ActiveMQ InactivityMonitor Worker" java.util.concurrent.RejectedExecutionException: Task org.apache.activemq.ActiveMQConnection$6@4df75ff3 rejected from java.util.concurrent.ThreadPoolExecutor@22caf7c7[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0]
+	at java.util.concurrent.ThreadPoolExecutor$AbortPolicy.rejectedExecution(ThreadPoolExecutor.java:2047)
+	at java.util.concurrent.ThreadPoolExecutor.reject(ThreadPoolExecutor.java:823)
+	at java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:1369)
+	at org.apache.activemq.ActiveMQConnection.onException(ActiveMQConnection.java:1988)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.ResponseCorrelator.onException(ResponseCorrelator.java:126)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.WireFormatNegotiator.onException(WireFormatNegotiator.java:173)
+	at org.apache.activemq.transport.AbstractInactivityMonitor.onException(AbstractInactivityMonitor.java:344)
+	at org.apache.activemq.transport.AbstractInactivityMonitor$1$1.run(AbstractInactivityMonitor.java:91)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+Exception in thread "ActiveMQ InactivityMonitor Worker" java.util.concurrent.RejectedExecutionException: Task org.apache.activemq.ActiveMQConnection$6@75eb274 rejected from java.util.concurrent.ThreadPoolExecutor@76874b5e[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0]
+	at java.util.concurrent.ThreadPoolExecutor$AbortPolicy.rejectedExecution(ThreadPoolExecutor.java:2047)
+	at java.util.concurrent.ThreadPoolExecutor.reject(ThreadPoolExecutor.java:823)
+	at java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:1369)
+	at org.apache.activemq.ActiveMQConnection.onException(ActiveMQConnection.java:1988)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.ResponseCorrelator.onException(ResponseCorrelator.java:126)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.WireFormatNegotiator.onException(WireFormatNegotiator.java:173)
+	at org.apache.activemq.transport.AbstractInactivityMonitor.onException(AbstractInactivityMonitor.java:344)
+	at org.apache.activemq.transport.AbstractInactivityMonitor$1$1.run(AbstractInactivityMonitor.java:91)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+Exception in thread "ActiveMQ InactivityMonitor Worker" java.util.concurrent.RejectedExecutionException: Task org.apache.activemq.ActiveMQConnection$6@5f00ad9a rejected from java.util.concurrent.ThreadPoolExecutor@5b3f22a2[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0]
+2018-05-08 10:00:32.527  WARN 1 --- [ool-1-thread-24] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:32.528  WARN 1 --- [ool-1-thread-29] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:32.534  WARN 1 --- [ool-1-thread-38] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:32.526  WARN 1 --- [ool-1-thread-16] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:32.636  WARN 1 --- [ool-1-thread-30] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+	at java.util.concurrent.ThreadPoolExecutor$AbortPolicy.rejectedExecution(ThreadPoolExecutor.java:2047)
+	at java.util.concurrent.ThreadPoolExecutor.reject(ThreadPoolExecutor.java:823)
+	at java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:1369)
+	at org.apache.activemq.ActiveMQConnection.onException(ActiveMQConnection.java:1988)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.ResponseCorrelator.onException(ResponseCorrelator.java:126)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+2018-05-08 10:00:32.637  WARN 1 --- [ool-1-thread-20] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:32.636  WARN 1 --- [ool-1-thread-21] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:32.651  WARN 1 --- [ool-1-thread-12] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:32.668  WARN 1 --- [pool-1-thread-7] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:32.672  WARN 1 --- [pool-1-thread-9] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+	at org.apache.activemq.transport.WireFormatNegotiator.onException(WireFormatNegotiator.java:173)
+	at org.apache.activemq.transport.AbstractInactivityMonitor.onException(AbstractInactivityMonitor.java:344)
+	at org.apache.activemq.transport.AbstractInactivityMonitor$1$1.run(AbstractInactivityMonitor.java:91)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+Exception in thread "ActiveMQ InactivityMonitor Worker" java.util.concurrent.RejectedExecutionException: Task org.apache.activemq.ActiveMQConnection$6@49e18b74 rejected from java.util.concurrent.ThreadPoolExecutor@ce30c2c[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0]
+	at java.util.concurrent.ThreadPoolExecutor$AbortPolicy.rejectedExecution(ThreadPoolExecutor.java:2047)
+	at java.util.concurrent.ThreadPoolExecutor.reject(ThreadPoolExecutor.java:823)
+	at java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:1369)
+	at org.apache.activemq.ActiveMQConnection.onException(ActiveMQConnection.java:1988)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.ResponseCorrelator.onException(ResponseCorrelator.java:126)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.WireFormatNegotiator.onException(WireFormatNegotiator.java:173)
+	at org.apache.activemq.transport.AbstractInactivityMonitor.onException(AbstractInactivityMonitor.java:344)
+	at org.apache.activemq.transport.AbstractInactivityMonitor$1$1.run(AbstractInactivityMonitor.java:91)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+Exception in thread "ActiveMQ InactivityMonitor Worker" java.util.concurrent.RejectedExecutionException: Task org.apache.activemq.ActiveMQConnection$6@78b60047 rejected from java.util.concurrent.ThreadPoolExecutor@7c899b89[Terminated, pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0]
+2018-05-08 10:00:32.703  WARN 1 --- [ool-1-thread-31] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+	at java.util.concurrent.ThreadPoolExecutor$AbortPolicy.rejectedExecution(ThreadPoolExecutor.java:2047)
+	at java.util.concurrent.ThreadPoolExecutor.reject(ThreadPoolExecutor.java:823)
+	at java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:1369)
+	at org.apache.activemq.ActiveMQConnection.onException(ActiveMQConnection.java:1988)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.ResponseCorrelator.onException(ResponseCorrelator.java:126)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.TransportFilter.onException(TransportFilter.java:101)
+	at org.apache.activemq.transport.WireFormatNegotiator.onException(WireFormatNegotiator.java:173)
+	at org.apache.activemq.transport.AbstractInactivityMonitor.onException(AbstractInactivityMonitor.java:344)
+	at org.apache.activemq.transport.AbstractInactivityMonitor$1$1.run(AbstractInactivityMonitor.java:91)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:748)
+2018-05-08 10:00:32.703  WARN 1 --- [ool-1-thread-34] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:32.704  WARN 1 --- [pool-1-thread-1] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:32.706  WARN 1 --- [ool-1-thread-37] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:32.706  WARN 1 --- [ool-1-thread-33] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:32.707  WARN 1 --- [ool-1-thread-23] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:32.716  WARN 1 --- [ool-1-thread-27] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:32.717  WARN 1 --- [ool-1-thread-19] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:32.717  WARN 1 --- [pool-1-thread-6] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:32.719  WARN 1 --- [ool-1-thread-22] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:32.728  WARN 1 --- [ool-1-thread-36] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:32.719  WARN 1 --- [ool-1-thread-10] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:32.745  WARN 1 --- [ool-1-thread-26] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:32.759  WARN 1 --- [ool-1-thread-32] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:32.759  WARN 1 --- [ool-1-thread-14] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:32.792  WARN 1 --- [ool-1-thread-18] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:32.792  WARN 1 --- [pool-1-thread-4] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:33.056  WARN 1 --- [ool-1-thread-11] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:32.758  WARN 1 --- [ool-1-thread-15] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:32.756  WARN 1 --- [pool-1-thread-3] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:33.056  WARN 1 --- [ool-1-thread-35] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry
+2018-05-08 10:00:33.058  WARN 1 --- [pool-1-thread-8] com.virtualpairprogrammers.Journey       : Queue unavailable - backing off 5000ms before retry

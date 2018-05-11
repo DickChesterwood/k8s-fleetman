@@ -1,51 +1,74 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit, OnDestroy } from '@angular/core';
 import { Vehicle } from './vehicle';
-import { Observable } from 'rxjs/Rx';
+import { Observable ,  Subscription } from 'rxjs';
 
 import { of } from 'rxjs/observable/of';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
+import {Message} from '@stomp/stompjs';
+import {StompService} from '@stomp/ng2-stompjs';
+
 @Injectable()
-export class VehicleService {
+export class VehicleService implements OnInit, OnDestroy {
 
-   static vehicles: Vehicle[] = [
-    { id: 0,
-      name: "City Truck",
-      lat: 53.376972,
-      lng: -1.467061,
-      dateAndTime: '30 April 2018 16:20',
-      speed: 14.2
-    },
+  subscription: Subscription;
+  private messages: Observable<Message>;
+  private subscribed: boolean;
 
-    { id: 1,
-      name: "Village Truck",
-      lat: 53.176972,
-      lng: -1.267061,
-      dateAndTime: '30 April 2018 16:18',
-      speed: 14.2
+  static vehicles: Vehicle[] = [];
+
+  constructor(private _stompService: StompService) {
+    console.log("constructor...............................");
+    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!on init");
+    this.subscribed = false;
+
+    // Store local reference to Observable
+    // for use with template ( | async )
+    this.subscribe();
+  }
+
+  subscribe() {
+
+    if (this.subscribed) {
+      return;
     }
-  ];
+console.log("subscribing...");
+    // Stream of messages
+    this.messages = this._stompService.subscribe('/vehiclepositions/messages');
 
-  constructor() {
+    // Subscribe a function to be run on_next message
+    this.subscription = this.messages.subscribe(this.onMessage);
+
+    this.subscribed = true;
   }
 
-  subscription : Observable<Vehicle> =Observable.of("")
-                     .switchMap(() => Observable
-                     .timer(500)
-                     .mapTo(VehicleService.moveRandomVehicle()))
-                     .repeat();
+  /** Consume a message from the _stompService */
+  onMessage = (message: Message) => {
 
-  private static moveRandomVehicle(): Vehicle {
-    let randomId = Math.floor(Math.random() * (this.vehicles.length));
-    let vehicle = this.vehicles[randomId];
-    vehicle.lat = VehicleService.generateRandomNumberFromRange(53.38653,53.37687);
-    vehicle.lng = VehicleService.generateRandomNumberFromRange(-1.49850,-1.46517);
-    return vehicle;
+    // Store message in "historic messages" queue
+    // TODO this will of course be an update of the vehicle, or a new one if not already here...
+
+    // Log it to the console
+    console.log(message);
   }
 
-  private static generateRandomNumberFromRange(min: number, max: number): number {
-    let randomNumber = min + (Math.random() * (max- min));
-    return randomNumber;
+  private unsubscribe() {
+    if (!this.subscribed) {
+      return;
+    }
+
+    // This will internally unsubscribe from Stomp Broker
+    // There are two subscriptions - one created explicitly, the other created in the template by use of 'async'
+    this.subscription.unsubscribe();
+    this.subscription = null;
+    this.messages = null;
+
+    this.subscribed = false;
   }
+
+  ngOnDestroy() {
+    this.unsubscribe();
+  }
+
 }
