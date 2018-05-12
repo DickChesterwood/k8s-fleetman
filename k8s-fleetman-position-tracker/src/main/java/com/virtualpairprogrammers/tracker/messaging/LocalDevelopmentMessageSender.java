@@ -1,7 +1,9 @@
 package com.virtualpairprogrammers.tracker.messaging;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -26,11 +28,11 @@ import com.virtualpairprogrammers.tracker.domain.VehiclePosition;
 @Component
 public class LocalDevelopmentMessageSender 
 {
-	private static final String testVehicleName = "truck";
+	private static final String[] testVehicleNames = { "Test Vehicle 1", "Test Vehicle 2", "Test Vehicle 3", "Test Vehicle 4", "Test Vehicle 5"};
 	private static final BigDecimal startLat = new BigDecimal("53.383882");
 	private static final BigDecimal startLng = new BigDecimal("-1.483979");
 	
-	private VehiclePosition lastPosition;
+	private VehiclePosition[] lastPositions;
 	
 	@Autowired
 	private JmsMessagingTemplate template;
@@ -40,31 +42,39 @@ public class LocalDevelopmentMessageSender
 	
 	@PostConstruct
 	public void init() {
-		lastPosition = new VehicleBuilder().withName(testVehicleName)
-		                                   .withLat(startLat)
-		                                   .withLng(startLng)
-		                                   .withTimestamp(new java.util.Date().toString()).build(); // TODO urgh
-		sendMessageToEmbeddedQueue(lastPosition);
+		lastPositions = new VehiclePosition[testVehicleNames.length];
+		for (int i=0; i<testVehicleNames.length; i++)
+		{
+			String testVehicleName = testVehicleNames[i];
+			VehiclePosition testVehicle =new VehicleBuilder().withName(testVehicleName)
+                    										.withLat(startLat)
+                    										.withLng(startLng)
+                    										.withTimestamp(new java.util.Date().toString()).build(); 
+			lastPositions[i]=testVehicle;
+			sendMessageToEmbeddedQueue(testVehicle);
+		}
 	}
 	
 	@Scheduled(fixedRate=100)
 	public void sendPeriodicVehcileUpdates()
 	{
-		// Random updates about every 1s
-		if (Math.random() < 0.9) return;
-		
-		double randomChangeX = (Math.random() - 0.5) / 1000;
-		double randomChangeY = (Math.random() - 0.5) / 1000;
+		System.out.println("Udpating");
+		double randomChangeX = (Math.random() - 0.5) / 10000;
+		double randomChangeY = (Math.random() - 0.5) / 10000;
+
+		int randomVehicleIndex = (int)(testVehicleNames.length * Math.random());
+		VehiclePosition lastPosition = lastPositions[randomVehicleIndex]; 
 		
 		BigDecimal newLat = lastPosition.getLat().add(new BigDecimal("" + randomChangeX));
 		BigDecimal newLng = lastPosition.getLongitude().add(new BigDecimal("" + randomChangeY));
 		
-		VehiclePosition newPostion = new VehicleBuilder().withName(testVehicleName)
+		VehiclePosition newPosition = new VehicleBuilder().withName(lastPosition.getName())
 				                                         .withLat(newLat)
 				                                         .withLng(newLng)
 				                                         .withTimestamp(new java.util.Date().toString()).build();
-		lastPosition = newPostion;
+		lastPositions[randomVehicleIndex] = newPosition;
 		sendMessageToEmbeddedQueue(lastPosition);
+		System.out.println("Sent update for " + testVehicleNames[randomVehicleIndex]);
 	}
 
 	private void sendMessageToEmbeddedQueue(VehiclePosition position) {

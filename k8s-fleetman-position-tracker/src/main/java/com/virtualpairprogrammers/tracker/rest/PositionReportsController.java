@@ -40,8 +40,6 @@ public class PositionReportsController
 	@RequestMapping(method=RequestMethod.GET, value="/vehicles/")
 	public Collection<VehiclePosition> getUpdatedPositions(@RequestParam(value="since", required=false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Date since)
 	{
-		System.out.println("asked for an update on all positions since " + since);
-		System.out.println("will be returning " + data.getLatestPositionsOfAllVehiclesUpdatedSince(since).size());
 		return data.getLatestPositionsOfAllVehiclesUpdatedSince(since);
 	}
 }

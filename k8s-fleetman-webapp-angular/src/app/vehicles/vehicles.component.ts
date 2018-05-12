@@ -14,11 +14,12 @@ export class VehiclesComponent implements OnInit {
   constructor(private vehicleService: VehicleService) { }
 
   ngOnInit() {
-    // this.vehicleService.subscription.subscribe(updatedVehicle => {
-    //   let foundIndex = this.vehicles.findIndex(existingVehicle => existingVehicle.id == updatedVehicle.id);
-    //   if (foundIndex == -1) this.vehicles.push(updatedVehicle)
-    //   else this.vehicles[foundIndex] = updatedVehicle;
-    // });
+    this.vehicleService.subscription.subscribe(updatedVehicle => {
+      if (updatedVehicle==null) return;
+      let foundIndex = this.vehicles.findIndex(existingVehicle => existingVehicle.name == updatedVehicle.name);
+      if (foundIndex == -1) this.vehicles.push(updatedVehicle)
+      else this.vehicles[foundIndex] = updatedVehicle;
+    });
   }
 
 }

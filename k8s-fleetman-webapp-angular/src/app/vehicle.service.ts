@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Vehicle } from './vehicle';
-import { Observable ,  Subscription } from 'rxjs';
+import { Observable ,  Subscription, BehaviorSubject } from 'rxjs';
 
 import { of } from 'rxjs/observable/of';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -9,19 +9,16 @@ import { catchError, map, tap } from 'rxjs/operators';
 import {Message} from '@stomp/stompjs';
 import {StompService} from '@stomp/ng2-stompjs';
 
-import { from } from 'rxjs/observable/from';
-
 @Injectable()
 export class VehicleService  {
 
-  static vehicles: Vehicle[] = [];
-
-  subscription = from(VehicleService.vehicles);
+  subscription: BehaviorSubject<Vehicle>;
 
   constructor(private _stompService: StompService) {
     // Store local reference to Observable
     // for use with template ( | async )
     this.subscribe();
+    this.subscription = new BehaviorSubject(null);
   }
 
   subscribe() {
@@ -34,17 +31,16 @@ export class VehicleService  {
 
   /** Consume a message from the _stompService */
   onMessage = (message: Message) => {
-    // update vehicle and notify
-    VehicleService.vehicles.push( { id: 0,
-      name: "City Truck",
-      lat: 53.376972,
-      lng: -1.467061,
-      dateAndTime: '30 April 2018 16:20',
-      speed: 14.2
-    });
 
-    // Log it to the console
-    console.log(message);
+    let body = JSON.parse(message.body);
+
+    // update vehicle and notify
+    let newVehicle = new Vehicle(body.name,
+                                 Number(body.lat),
+                                 Number(body.longitude),
+                                 body.timestamp,
+                                Number(body.speed));
+    this.subscription.next(newVehicle);
   }
 
 }
