@@ -27,7 +27,7 @@ public class TestSpeedCalculations {
 										.withName("city_truck")
 										.withLat("53.33507")
 										.withLng("-1.53766")
-										.withTimestamp("Wed Jul 05 10:26:24 BST 2017")
+										.withTimestamp(TestUtils.getDateFrom("Wed Jul 05 10:26:24 BST 2017"))
 										.build();
 										
 		data.updatePosition(report1);
@@ -40,7 +40,7 @@ public class TestSpeedCalculations {
 				.withName("city_truck")
 				.withLat("53.33635")
 				.withLng("-1.53682")
-				.withTimestamp("Wed Jul 05 10:26:29 BST 2017")
+				.withTimestamp(TestUtils.getDateFrom("Wed Jul 05 10:26:29 BST 2017"))
 				.build();
 		
 		data.updatePosition(report2);
@@ -63,7 +63,7 @@ public class TestSpeedCalculations {
 				.withName("city_truck")
 				.withLat("53.33393")
 				.withLng("-1.52097")
-				.withTimestamp("Wed Jul 05 10:26:00 BST 2017")
+				.withTimestamp(TestUtils.getDateFrom("Wed Jul 05 10:26:00 BST 2017"))
 				.build();
 		data.updatePosition(report1);
 		
@@ -74,7 +74,7 @@ public class TestSpeedCalculations {
 				.withName("city_truck")
 				.withLat("53.34292")
 				.withLng("-1.52083")
-				.withTimestamp("Wed Jul 05 10:27:00 BST 2017")
+				.withTimestamp(TestUtils.getDateFrom("Wed Jul 05 10:27:00 BST 2017"))
 				.build();
 		data.updatePosition(report2);
 		
@@ -92,7 +92,7 @@ public class TestSpeedCalculations {
 				.withName("city_truck")
 				.withLat("53.33393")
 				.withLng("-1.52097")
-				.withTimestamp("Wed Jul 05 10:26:00 BST 2017")
+				.withTimestamp(TestUtils.getDateFrom("Wed Jul 05 10:26:00 BST 2017"))
 				.build();
 		data.updatePosition(report1);
 		
@@ -103,7 +103,7 @@ public class TestSpeedCalculations {
 				.withName("city_truck")
 				.withLat("53.33393")
 				.withLng("-1.52097")
-				.withTimestamp("Wed Jul 05 10:26:05 BST 2017")
+				.withTimestamp(TestUtils.getDateFrom("Wed Jul 05 10:26:05 BST 2017"))
 				.build();
 		
 		data.updatePosition(report2);
@@ -122,7 +122,7 @@ public class TestSpeedCalculations {
 				.withName("city_truck")
 				.withLat("53.33393")
 				.withLng("-1.52097")
-				.withTimestamp("Wed Jul 05 10:26:00 BST 2017")
+				.withTimestamp(TestUtils.getDateFrom("Wed Jul 05 10:26:00 BST 2017"))
 				.build();
 		data.updatePosition(report1);
 			
@@ -130,7 +130,7 @@ public class TestSpeedCalculations {
 				.withName("city_truck")
 				.withLat("53.34292")
 				.withLng("-1.52083")
-				.withTimestamp("Wed Jul 05 10:27:00 BST 2017")
+				.withTimestamp(TestUtils.getDateFrom("Wed Jul 05 10:27:00 BST 2017"))
 				.build();
 		data.updatePosition(report2);
 		
@@ -138,7 +138,7 @@ public class TestSpeedCalculations {
 				.withName("city_truck")
 				.withLat("53.33635")
 				.withLng("-1.53682")
-				.withTimestamp("Wed Jul 05 10:28:24 BST 2017")
+				.withTimestamp(TestUtils.getDateFrom("Wed Jul 05 10:28:24 BST 2017"))
 				.build();		
 		data.updatePosition(report3);
 		

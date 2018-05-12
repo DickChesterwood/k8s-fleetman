@@ -1,9 +1,9 @@
 package com.virtualpairprogrammers.tracker.messaging;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -31,7 +31,7 @@ public class LocalDevelopmentMessageSender
 	private static final String[] testVehicleNames = { "Test Vehicle 1", "Test Vehicle 2", "Test Vehicle 3", "Test Vehicle 4", "Test Vehicle 5"};
 	private static final BigDecimal startLat = new BigDecimal("53.383882");
 	private static final BigDecimal startLng = new BigDecimal("-1.483979");
-	
+	private DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 	private VehiclePosition[] lastPositions;
 	
 	@Autowired
@@ -49,7 +49,7 @@ public class LocalDevelopmentMessageSender
 			VehiclePosition testVehicle =new VehicleBuilder().withName(testVehicleName)
                     										.withLat(startLat)
                     										.withLng(startLng)
-                    										.withTimestamp(new java.util.Date().toString()).build(); 
+                    										.withTimestamp(new java.util.Date()).build(); 
 			lastPositions[i]=testVehicle;
 			sendMessageToEmbeddedQueue(testVehicle);
 		}
@@ -58,7 +58,6 @@ public class LocalDevelopmentMessageSender
 	@Scheduled(fixedRate=100)
 	public void sendPeriodicVehcileUpdates()
 	{
-		System.out.println("Udpating");
 		double randomChangeX = (Math.random() - 0.5) / 10000;
 		double randomChangeY = (Math.random() - 0.5) / 10000;
 
@@ -71,10 +70,9 @@ public class LocalDevelopmentMessageSender
 		VehiclePosition newPosition = new VehicleBuilder().withName(lastPosition.getName())
 				                                         .withLat(newLat)
 				                                         .withLng(newLng)
-				                                         .withTimestamp(new java.util.Date().toString()).build();
+				                                         .withTimestamp(new java.util.Date()).build();
 		lastPositions[randomVehicleIndex] = newPosition;
 		sendMessageToEmbeddedQueue(lastPosition);
-		System.out.println("Sent update for " + testVehicleNames[randomVehicleIndex]);
 	}
 
 	private void sendMessageToEmbeddedQueue(VehiclePosition position) {
@@ -82,7 +80,7 @@ public class LocalDevelopmentMessageSender
 		mapMessage.put("vehicle", position.getName());
 		mapMessage.put("lat", position.getLat().toString());
 		mapMessage.put("long", position.getLongitude().toString());
-		mapMessage.put("time", position.getTimestamp().toString());
+		mapMessage.put("time", format.format(position.getTimestamp()));
 		template.convertAndSend(destination, mapMessage);
 	}
 }

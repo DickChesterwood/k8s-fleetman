@@ -1,9 +1,6 @@
 package com.virtualpairprogrammers.tracker.domain;
 
 import java.math.BigDecimal;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class VehicleBuilder 
@@ -13,21 +10,6 @@ public class VehicleBuilder
 	private BigDecimal lng;
 	private Date timestamp;
 	private BigDecimal speed;
-	
-	// TODO see case #9
-	public VehicleBuilder withTimestamp(String timestamp)
-	{
-		DateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
-		try {
-			this.timestamp = format.parse(timestamp);
-			return this;
-		} 
-		catch (ParseException e) 
-		{
-			// code error
-			throw new RuntimeException(e);
-		} 
-	}
 	
 	public VehicleBuilder withTimestamp(Date date)
 	{
