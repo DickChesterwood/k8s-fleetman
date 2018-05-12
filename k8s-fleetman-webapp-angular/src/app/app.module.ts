@@ -14,6 +14,9 @@ import { MapComponent } from './map/map.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 import {StompConfig, StompService} from '@stomp/ng2-stompjs';
+import { HeaderComponent } from './header/header.component';
+
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 const stompConfig: StompConfig = {
   // Which server?
@@ -37,7 +40,8 @@ const stompConfig: StompConfig = {
   declarations: [
     AppComponent,
     VehiclesComponent,
-    MapComponent
+    MapComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,8 @@ const stompConfig: StompConfig = {
     LeafletModule.forRoot(),
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
-    )
+    ),
+    NgbModule.forRoot()
   ],
   providers: [VehicleService,
               StompService,
