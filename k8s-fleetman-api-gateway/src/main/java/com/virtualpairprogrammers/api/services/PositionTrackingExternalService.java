@@ -30,7 +30,6 @@ public class PositionTrackingExternalService
 	public Collection<VehiclePosition> handleExternalServiceDown(Date since)
 	{
 		// as the external service is down, simply return "no updates"
-		System.out.println("external service down");
 		return new HashSet<>();
 	}
 	

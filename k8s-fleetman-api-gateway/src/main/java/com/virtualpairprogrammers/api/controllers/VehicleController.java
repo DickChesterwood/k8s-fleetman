@@ -30,10 +30,8 @@ public class VehicleController
     {
     	Collection<VehiclePosition> results = externalService.getAllUpdatedPositionsSince(lastUpdateTime);
     	this.lastUpdateTime = new Date();
-    	System.out.println("Received " + results.size() + " updates. Since is " + this.lastUpdateTime);
     	for (VehiclePosition next: results)
     	{
-    		System.out.println("updated position for " + next.getName());
 			this.messagingTemplate.convertAndSend("/vehiclepositions/messages", next);
     	}
     }
