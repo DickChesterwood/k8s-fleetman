@@ -1,6 +1,8 @@
 package com.virtualpairprogrammers;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -32,49 +34,49 @@ public class TestBasicOperationsOnInMemoryDatabase {
 				.withName("who cares")
 				.withLat("1.0")
 				.withLng("1.0")
-				.withTimestamp("Wed Feb 01 10:26:12 BST 2017")
+				.withTimestamp(TestUtils.getDateFrom("Wed Feb 01 10:26:12 BST 2017"))
 				.build();
 		
 		secondReport = new VehicleBuilder()
 				.withName("who cares")
 				.withLat("1.0")
 				.withLng("1.0")
-				.withTimestamp("Mon May 01 10:26:12 BST 2017")
+				.withTimestamp(TestUtils.getDateFrom("Mon May 01 10:26:12 BST 2017"))
 				.build();
 
 		thirdReport = new VehicleBuilder()
 				.withName("who cares")
 				.withLat("1.0")
 				.withLng("1.0")
-				.withTimestamp("Wed Jul 05 10:26:12 BST 2017")
+				.withTimestamp(TestUtils.getDateFrom("Wed Jul 05 10:26:12 BST 2017"))
 				.build();
 
 		fourthReport = new VehicleBuilder()
 						.withName("who cares")
 						.withLat("1.0")
 						.withLng("1.0")
-						.withTimestamp("Wed Jul 05 10:26:24 BST 2017")
+						.withTimestamp(TestUtils.getDateFrom("Wed Jul 05 10:26:24 BST 2017"))
 						.build();
 		
 		fifthReport = new VehicleBuilder()
 				.withName("who cares")
 				.withLat("4.0")
 				.withLng("2.0")
-				.withTimestamp("Wed Jul 05 10:26:30 BST 2017")
+				.withTimestamp(TestUtils.getDateFrom("Wed Jul 05 10:26:30 BST 2017"))
 				.build();
 		
 		sixthReport = new VehicleBuilder()
 				.withName("who cares")
 				.withLat("1.0")
 				.withLng("1.0")
-				.withTimestamp("Thu Jul 06 10:26:12 BST 2017")
+				.withTimestamp(TestUtils.getDateFrom("Thu Jul 06 10:26:12 BST 2017"))
 				.build();
 		
 		seventhReport = new VehicleBuilder()
 				.withName("who cares")
 				.withLat("1.0")
 				.withLng("1.0")
-				.withTimestamp("Wed May 09 19:55:12 BST 2018")
+				.withTimestamp(TestUtils.getDateFrom("Wed May 09 19:55:12 BST 2018"))
 				.build();		
 		
 		allReports = new VehiclePosition[] {firstReport, secondReport, thirdReport, fourthReport, fifthReport, sixthReport, seventhReport};
@@ -130,7 +132,7 @@ public class TestBasicOperationsOnInMemoryDatabase {
 		testData.addAllReports(allReports);
 		
 		// This is the exact timestamp of report 4.
-		Collection<VehiclePosition> reports = testData.getAllReportsForVehicleSince("who cares", "Wed Jul 05 10:26:24 BST 2017");
+		Collection<VehiclePosition> reports = testData.getAllReportsForVehicleSince("who cares", TestUtils.getDateFrom("Wed Jul 05 10:26:24 BST 2017"));
 		
 		// should contain 4, 5, 6, 7
 		Set<VehiclePosition> expectedReports = new HashSet<>();
@@ -147,7 +149,7 @@ public class TestBasicOperationsOnInMemoryDatabase {
 	public void testGettingAllReportsSinceAVeryLateTimeResultsInNoReports() throws VehicleNotFoundException
 	{
 		testData.addAllReports(allReports);
-		Collection <VehiclePosition> results = testData.getAllReportsForVehicleSince("who cares", "Thu May 10 12:00:00 BST 2018");
+		Collection <VehiclePosition> results = testData.getAllReportsForVehicleSince("who cares", TestUtils.getDateFrom("Thu May 10 12:00:00 BST 2018"));
 		assertTrue(results.isEmpty());
 	}
 	
@@ -155,7 +157,7 @@ public class TestBasicOperationsOnInMemoryDatabase {
 	public void testGettingAllReportsSinceAVeryLongTimeAgoReturnsTheLot() throws VehicleNotFoundException
 	{
 		testData.addAllReports(allReports);
-		Collection <VehiclePosition> results = testData.getAllReportsForVehicleSince("who cares", "Sat Jun 09 12:00:00 BST 1973");
+		Collection <VehiclePosition> results = testData.getAllReportsForVehicleSince("who cares", TestUtils.getDateFrom("Sat Jun 09 12:00:00 BST 1973"));
 		assertEquals(7, results.size());
 		assertTrue(results.containsAll(Arrays.asList(allReports)));
 	}
@@ -164,7 +166,8 @@ public class TestBasicOperationsOnInMemoryDatabase {
 	public void testGettingAllReportsForNonExistentVehicleThrowsException() throws VehicleNotFoundException
 	{
 		testData.addAllReports(allReports);
-		Collection <VehiclePosition> results = testData.getAllReportsForVehicleSince("unknown", "Sat Jun 09 12:00:00 BST 1973");
+		Collection <VehiclePosition> results = testData.getAllReportsForVehicleSince("unknown", TestUtils.getDateFrom("Sat Jun 09 12:00:00 BST 1973"));
 		results.size(); // just to silence the warning!
 	}
+	
 }

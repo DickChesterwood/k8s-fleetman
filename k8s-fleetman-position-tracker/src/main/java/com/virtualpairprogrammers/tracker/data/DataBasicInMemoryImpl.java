@@ -2,11 +2,9 @@ package com.virtualpairprogrammers.tracker.data;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -97,8 +95,8 @@ public class DataBasicInMemoryImpl implements Data
 		}
 	}
 
-	// TODO factor this out or something
-	private TreeSet<VehiclePosition> getAllReportsForVehicleSince(String name, Date timestamp) throws VehicleNotFoundException {
+	@Override
+	public TreeSet<VehiclePosition> getAllReportsForVehicleSince(String name, Date timestamp) throws VehicleNotFoundException {
 		if (timestamp == null) timestamp = new java.util.Date(1);
 		
 		// Could use a Java 8 lambda to filter the collection but I'm playing safe in targeting Java 7
@@ -108,12 +106,6 @@ public class DataBasicInMemoryImpl implements Data
 		VehiclePosition example = new VehicleBuilder().withName(name).withTimestamp(timestamp).build();
 		TreeSet<VehiclePosition> results = (TreeSet<VehiclePosition>)(vehicleReports.headSet(example, true));
 		return results;
-	}
-
-	@Override
-	public TreeSet<VehiclePosition> getAllReportsForVehicleSince(String vehicleName, String timestamp) throws VehicleNotFoundException {
-		Date convertedTime = new VehicleBuilder().withTimestamp(timestamp).build().getTimestamp();
-		return getAllReportsForVehicleSince(vehicleName, convertedTime);
 	}
 
 	@Override
@@ -135,11 +127,5 @@ public class DataBasicInMemoryImpl implements Data
 			}
 		}
 		return results;
-	}
-
-	@Override
-	public Collection<VehiclePosition> getLatestPositionsOfAllVehiclesUpdatedSince(String timestamp) {
-		Date convertedTime = new VehicleBuilder().withTimestamp(timestamp).build().getTimestamp();
-		return getLatestPositionsOfAllVehiclesUpdatedSince(convertedTime);
 	}
 }

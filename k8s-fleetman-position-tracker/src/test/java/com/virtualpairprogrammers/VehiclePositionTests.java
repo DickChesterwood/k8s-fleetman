@@ -3,6 +3,8 @@ package com.virtualpairprogrammers;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
+import java.util.Date;
+
 import org.junit.Test;
 
 import com.virtualpairprogrammers.tracker.domain.VehicleBuilder;
@@ -10,7 +12,7 @@ import com.virtualpairprogrammers.tracker.domain.VehiclePosition;
 
 public class VehiclePositionTests {
 
-	private static final String TIMESTAMP = "Wed Feb 01 10:26:12 BST 2017";
+	private static final Date TIMESTAMP = TestUtils.getDateFrom("Wed Feb 01 10:26:12 BST 2017");
 
 	@Test
 	public void testEqualityOfVehiclePositions()
@@ -33,7 +35,7 @@ public class VehiclePositionTests {
 		// on the lat/longs as well? Well yes but in reality, if we have two vehiclepositions
 		// with exactly the same time, then it must be the same VehiclePosition: a vehicle
 		// can't be in two places at the same time.
-		VehiclePosition one = new VehicleBuilder().withName("truck").withTimestamp("Wed Feb 01 10:26:11 BST 2017").build();
+		VehiclePosition one = new VehicleBuilder().withName("truck").withTimestamp(TestUtils.getDateFrom("Wed Feb 01 10:26:11 BST 2017")).build();
 		VehiclePosition two = new VehicleBuilder().withName("truck").withTimestamp(TIMESTAMP).build();
 		assertNotEquals(one, two);
 	}
