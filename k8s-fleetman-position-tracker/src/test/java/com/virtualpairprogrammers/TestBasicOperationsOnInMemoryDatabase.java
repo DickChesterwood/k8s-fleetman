@@ -7,6 +7,7 @@ import static org.junit.Assert.fail;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import org.junit.Test;
@@ -30,6 +31,10 @@ public class TestBasicOperationsOnInMemoryDatabase {
 	private VehiclePosition[] allReports;
 	
 	public TestBasicOperationsOnInMemoryDatabase() {
+		
+		// Set to trap any problems with non UK locales
+		Locale.setDefault(new Locale("tr", "TR"));
+		
 		firstReport = new VehicleBuilder()
 				.withName("who cares")
 				.withLat("1.0")

@@ -4,20 +4,14 @@
     <tr>
       <th scope="col">Name</th>
       <th scope="col">Last seen</th>
+      <th scope="col">Speed mph</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row"><span class="fa fa-truck"></span>City Truck</th>
-      <td>20:16:32 UTC+1</td>
-    </tr>
-    <tr>
-      <th scope="row">Village Truck</th>
-      <td>20:13:12 UTC+1</td>
-    </tr>
-    <tr>
-      <th scope="row">London Riverside</th>
-      <td>20:09:01 UTC+1</td>
+    <tr *ngFor="let vehicle of vehicles">
+      <th scope="row"><span class="fa fa-truck"></span>{{vehicle.name}}</th>
+      <td>{{vehicle.dateAndTime | date:'HH:mm:ss'}}</td>
+      <td>{{vehicle.speed | number:'0.0-0'}}</td>
     </tr>
   </tbody>
 </table>
