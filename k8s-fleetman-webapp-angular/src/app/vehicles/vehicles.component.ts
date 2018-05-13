@@ -10,6 +10,7 @@ import { VehicleService } from '../vehicle.service';
 export class VehiclesComponent implements OnInit {
 
   vehicles: Vehicle[] = [];
+  centeredVehicle: string;
 
   constructor(private vehicleService: VehicleService) { }
 
@@ -23,7 +24,17 @@ export class VehiclesComponent implements OnInit {
   }
 
   centerVehicle(vehicle: Vehicle) {
-    this.vehicleService.updateCenterVehicle(vehicle);
+    // allow to "deselect"
+    if (this.centeredVehicle == vehicle.name)
+    {
+      this.centeredVehicle = null
+      this.vehicleService.updateCenterVehicle(null);
+    }
+    else
+    {
+      this.centeredVehicle = vehicle.name;
+      this.vehicleService.updateCenterVehicle(vehicle);
+    }
   }
 
 }
