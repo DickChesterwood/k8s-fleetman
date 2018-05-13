@@ -8,7 +8,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let vehicle of vehicles">
+    <tr *ngFor="let vehicle of vehicles"  (click)="centerVehicle(vehicle)">
       <th scope="row"><span class="fa fa-truck"></span>{{vehicle.name}}</th>
       <td>{{vehicle.dateAndTime | date:'HH:mm:ss'}}</td>
       <td>{{vehicle.speed | number:'0.0-0'}}</td>

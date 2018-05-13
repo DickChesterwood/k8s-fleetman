@@ -22,4 +22,8 @@ export class VehiclesComponent implements OnInit {
     });
   }
 
+  centerVehicle(vehicle: Vehicle) {
+    this.vehicleService.updateCenterVehicle(vehicle);
+  }
+
 }

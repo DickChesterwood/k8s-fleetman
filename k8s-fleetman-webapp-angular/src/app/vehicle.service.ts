@@ -13,18 +13,19 @@ import {StompService} from '@stomp/ng2-stompjs';
 export class VehicleService  {
 
   subscription: BehaviorSubject<Vehicle>;
+  centerVehicle: BehaviorSubject<Vehicle>;
 
   constructor(private _stompService: StompService) {
     // Store local reference to Observable
     // for use with template ( | async )
     this.subscribe();
     this.subscription = new BehaviorSubject(null);
+    this.centerVehicle = new BehaviorSubject(null);
   }
 
   subscribe() {
     // Stream of messages
     var messages = this._stompService.subscribe('/vehiclepositions/messages');
-
     // Subscribe a function to be run on_next message
     messages.subscribe(this.onMessage);
   }
@@ -43,4 +44,7 @@ export class VehicleService  {
     this.subscription.next(newVehicle);
   }
 
+  updateCenterVehicle(centerVehicle: Vehicle) {
+    this.centerVehicle.next(centerVehicle);
+  }
 }
