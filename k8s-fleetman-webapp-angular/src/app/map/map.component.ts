@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { icon, latLng, Layer, Marker, marker, tileLayer } from 'leaflet';
+import { icon, latLng, Layer, Marker, marker, tileLayer, Map } from 'leaflet';
 
 import { VehicleService } from '../vehicle.service';
 import { Vehicle } from '../vehicle';
@@ -15,6 +15,8 @@ export class MapComponent implements OnInit {
   constructor(private vehicleService: VehicleService) { }
 
   markers: Marker[] = [];
+  map: Map;
+  centerVehicle: string;
 
   options = {
     layers: [
@@ -27,13 +29,14 @@ export class MapComponent implements OnInit {
     center: latLng(53.38207,-1.48423)
   };
 
-  ngOnInit() {
+  onMapReady(map: Map) {
+    this.map = map;
+  }
 
+  ngOnInit() {
     this.vehicleService.subscription.subscribe(vehicle => {
        if (vehicle == null) return;
-       console.log("BANG!!!!! got an update for vehicle " + vehicle.name);
        let foundIndex = this.markers.findIndex(existingMarker => existingMarker.options['title'] == vehicle.name);
-       console.log(">>>>>>>>>>>>>> found index is " + foundIndex);
        let newMarker = marker([vehicle.lat,vehicle.lng] ,
                                {
                                  icon: icon( {
@@ -47,12 +50,21 @@ export class MapComponent implements OnInit {
 
        if (foundIndex == -1) this.markers.push(newMarker);
        else this.markers[foundIndex] = newMarker;
+       if (this.centerVehicle == vehicle.name) {
+         this.map.setView([vehicle.lat,vehicle.lng],
+                           this.map.getZoom(), {
+         				   	       "animate": true
+         				  });
+       }
      });
-  }
 
-  // getMarkers() {
-  //   return Object.keys(this.markerDictionary).map(function(key){
-  //      return this.markerDictionary[key];
-  //   });
-  // }
+     this.vehicleService.centerVehicle.subscribe(vehicle => {
+       if (vehicle == null) return;
+       this.centerVehicle = vehicle.name;
+       this.map.flyTo([vehicle.lat,vehicle.lng],
+                         this.map.getZoom(), {
+       				   	       "animate": true
+       				  });
+     });
+   }
 }
