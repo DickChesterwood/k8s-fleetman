@@ -37,29 +37,39 @@ export class MapComponent implements OnInit {
     this.vehicleService.subscription.subscribe(vehicle => {
        if (vehicle == null) return;
        let foundIndex = this.markers.findIndex(existingMarker => existingMarker.options['title'] == vehicle.name);
-       let newMarker = marker([vehicle.lat,vehicle.lng] ,
-                               {
-                                 icon: icon( {
-                                               iconSize: [ 25, 41 ],
-                                               iconAnchor: [ 11, 41 ],
-                                               iconUrl: 'assets/marker-icon.png',
-                                               shadowUrl: 'assets/marker-shadow.png'
-                                             }),
-                                 title: vehicle.name
-                               }).bindTooltip(vehicle.name);
 
-       if (foundIndex == -1) this.markers.push(newMarker);
-       else this.markers[foundIndex] = newMarker;
+
+       if (foundIndex == -1)
+       {
+         let newMarker = marker([vehicle.lat,vehicle.lng] ,
+                                 {
+                                   icon: icon( {
+                                                 iconSize: [ 25, 41 ],
+                                                 iconAnchor: [ 11, 41 ],
+                                                 iconUrl: 'assets/marker-icon.png',
+                                                 shadowUrl: 'assets/marker-shadow.png'
+                                               }),
+                                   title: vehicle.name
+                                 }).bindTooltip(vehicle.name);
+         this.markers.push(newMarker);
+         newMarker.openTooltip();
+       }
+       else
+       {
+        this.markers[foundIndex].setLatLng(latLng(vehicle.lat, vehicle.lng));
+       }
        if (this.centerVehicle == vehicle.name) {
          this.map.setView([vehicle.lat,vehicle.lng],
-                           this.map.getZoom(), {
-         				   	       "animate": true
-         				  });
+                           this.map.getZoom(), {"animate": true});
        }
      });
 
      this.vehicleService.centerVehicle.subscribe(vehicle => {
-       if (vehicle == null) return;
+       if (vehicle == null)
+       {
+         this.centerVehicle = null;
+         return;
+       } 
        this.centerVehicle = vehicle.name;
        this.map.flyTo([vehicle.lat,vehicle.lng],
                          this.map.getZoom(), {
