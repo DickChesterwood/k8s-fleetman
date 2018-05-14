@@ -18,8 +18,17 @@ export class VehiclesComponent implements OnInit {
     this.vehicleService.subscription.subscribe(updatedVehicle => {
       if (updatedVehicle==null) return;
       let foundIndex = this.vehicles.findIndex(existingVehicle => existingVehicle.name == updatedVehicle.name);
-      if (foundIndex == -1) this.vehicles.push(updatedVehicle)
-      else this.vehicles[foundIndex] = updatedVehicle;
+      if (foundIndex == -1)
+      {
+        this.vehicles.push(updatedVehicle);
+        this.vehicles.sort( (a:Vehcile,b:Vehicle) => {
+          return (a.name < b.name) ? -1 : 1;
+        });
+      }
+      else
+      {
+        this.vehicles[foundIndex] = updatedVehicle;
+      }
     });
   }
 
