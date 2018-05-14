@@ -22,6 +22,7 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
 
 import com.virtualpairprogrammers.simulator.PositionsimulatorApplication;
+import com.virtualpairprogrammers.simulator.utils.VehicleNameUtils;
 
 @Component
 public class JourneySimulator implements Runnable {
@@ -90,7 +91,7 @@ public class JourneySimulator implements Runnable {
 			{
 				URL resource = nextFile.getURL();
 				File f = new File(resource.getFile()); 
-				String vehicleName = f.getName();
+				String vehicleName = VehicleNameUtils.prettifyName(f.getName());
 				InputStream is = PositionsimulatorApplication.class.getResourceAsStream("/tracks/" + f.getName());
 				try (Scanner sc = new Scanner(is))
 				{
