@@ -1,4 +1,4 @@
-package com.virtualpairprogrammers;
+package com.virtualpairprogrammers.simulator.journey;
 
 import java.util.Collections;
 import java.util.HashMap;

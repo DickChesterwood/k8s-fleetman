@@ -1,4 +1,4 @@
-package com.virtualpairprogrammers;
+package com.virtualpairprogrammers.simulator.journey;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,6 +20,8 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
+
+import com.virtualpairprogrammers.simulator.PositionsimulatorApplication;
 
 @Component
 public class JourneySimulator implements Runnable {

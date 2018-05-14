@@ -20,7 +20,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 const stompConfig: StompConfig = {
   // Which server?
-  url: 'ws://localhost:8081/updates',
+  url: 'ws://localhost:8080/updates',
   headers: {
   },
   // How often to heartbeat?
