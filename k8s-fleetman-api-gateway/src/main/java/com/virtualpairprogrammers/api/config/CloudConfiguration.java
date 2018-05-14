@@ -1,4 +1,4 @@
-package com.virtualpairprogrammers.api;
+package com.virtualpairprogrammers.api.config;
 
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
