@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { icon, latLng, Layer, Marker, marker, tileLayer, Map } from 'leaflet';
+import { icon, latLng, Layer, Marker, marker, tileLayer, Map, point } from 'leaflet';
 
 import { VehicleService } from '../vehicle.service';
 import { Vehicle } from '../vehicle';
@@ -50,9 +50,8 @@ export class MapComponent implements OnInit {
                                                  shadowUrl: 'assets/marker-shadow.png'
                                                }),
                                    title: vehicle.name
-                                 }).bindTooltip(vehicle.name);
+                                 }).bindTooltip(vehicle.name, {permanent:true,  offset: point({x: 0, y: 0})});
          this.markers.push(newMarker);
-         newMarker.openTooltip();
        }
        else
        {
@@ -69,7 +68,7 @@ export class MapComponent implements OnInit {
        {
          this.centerVehicle = null;
          return;
-       } 
+       }
        this.centerVehicle = vehicle.name;
        this.map.flyTo([vehicle.lat,vehicle.lng],
                          this.map.getZoom(), {
