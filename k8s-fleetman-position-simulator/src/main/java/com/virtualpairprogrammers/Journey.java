@@ -12,7 +12,7 @@ import org.springframework.jms.core.JmsTemplate;
 
 /**
  * A callable (so we can invoke in on a executor and join on it) that sends messages
- * to a queue periodically - represeting the journey of a delivery vehicle.
+ * to a queue periodically - representing the journey of a delivery vehicle.
  */
 public class Journey implements Callable<Object> 
 {
