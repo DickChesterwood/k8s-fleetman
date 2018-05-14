@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +22,12 @@ public class MessageProcessor {
 	@Autowired
 	private Data data;
 	
-	private DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+	private DateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy", Locale.ENGLISH);
 
 	@JmsListener(destination="${fleetman.position.queue}")
 	public void processPositionMessageFromQueue(Map<String, String> incomingMessage ) throws ParseException 
 	{
 		String positionDatestamp = incomingMessage.get("time");
-		// This is ISO time
 		Date convertedDatestamp = format.parse(positionDatestamp);
 		
 		VehiclePosition newReport = new VehicleBuilder()

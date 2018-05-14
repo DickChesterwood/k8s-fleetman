@@ -1,10 +1,12 @@
-package com.virtualpairprogrammers;
+package com.virtualpairprogrammers.simulator;
 
 import java.io.IOException;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+
+import com.virtualpairprogrammers.simulator.journey.JourneySimulator;
 
 /**
  * Written for the Microservices course, this is a toy application which simulates the progress
