@@ -5,9 +5,9 @@ html, body, #container {
 }
 
 #sidebar {
-  width: 250px;
-  height: auto;
-  max-width: 100%;
+  width: auto;
+  overflow: auto;
+	max-height:calc(100% - 56px);
   float: left;
 }
 #mapid {
