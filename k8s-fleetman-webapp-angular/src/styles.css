@@ -5,7 +5,7 @@ html, body, #container {
 }
 
 #sidebar {
-  width: auto;
+  width: 300px;
   overflow: auto;
 	max-height:calc(100% - 56px);
   float: left;
