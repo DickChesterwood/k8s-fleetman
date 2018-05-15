@@ -72,7 +72,7 @@
 									<descriptorRef>artifact</descriptorRef>
 								</assembly>
 								<tags>
-									<tag>latest</tag>
+									<tag>release1</tag>
 								</tags>
 							</build>
 						</image>
