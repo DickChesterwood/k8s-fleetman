@@ -21,7 +21,7 @@ export class VehiclesComponent implements OnInit {
       if (foundIndex == -1)
       {
         this.vehicles.push(updatedVehicle);
-        this.vehicles.sort( (a:Vehcile,b:Vehicle) => {
+        this.vehicles.sort( (a:Vehicle,b:Vehicle) => {
           return (a.name < b.name) ? -1 : 1;
         });
       }

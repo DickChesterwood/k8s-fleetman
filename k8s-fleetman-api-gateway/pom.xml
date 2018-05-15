@@ -79,9 +79,10 @@
 				<version>0.21.0</version>
 			
 				<configuration>			
-			        <!--  <dockerHost>http://127.0.0.1:2375</dockerHost> -->        
-			        <!--  this is for Mac and Amazon Linux -->
+
 			        <!-- <dockerHost>unix:///var/run/docker.sock</dockerHost> -->
+			        <dockerHost>tcp://192.168.99.100:2376</dockerHost>  
+                    <certPath>C:\Users\Richard\.docker\machine\machines\default</certPath>
      
 			
 			        <verbose>true</verbose>
@@ -89,7 +90,7 @@
 			        		     
 					<images>
 						<image>
-							<name>richardchesterwood/k8s-fleetman-webapp</name>
+							<name>richardchesterwood/k8s-fleetman-api-gateway</name>
 							<build>
 								<dockerFileDir>${project.basedir}/src/main/docker/</dockerFileDir>
 			
@@ -97,7 +98,7 @@
 									<descriptorRef>artifact</descriptorRef>
 								</assembly>
 								<tags>
-									<tag>latest</tag>
+									<tag>release1</tag>
 								</tags>
 							</build>
 						</image>

@@ -22,7 +22,7 @@ public class MessageProcessor {
 	@Autowired
 	private Data data;
 	
-	private DateFormat format = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy", Locale.ENGLISH);
+	private DateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 
 	@JmsListener(destination="${fleetman.position.queue}")
 	public void processPositionMessageFromQueue(Map<String, String> incomingMessage ) throws ParseException 

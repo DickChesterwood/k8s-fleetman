@@ -25,7 +25,7 @@ public class VehicleController
 	
 	private Date lastUpdateTime = null;
 
-    @Scheduled(fixedRate=1000)
+    @Scheduled(fixedRate=100)
     public void updatePositions()
     {
     	Collection<VehiclePosition> results = externalService.getAllUpdatedPositionsSince(lastUpdateTime);

@@ -1,5 +1,6 @@
 package com.virtualpairprogrammers.simulator.journey;
 
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +21,7 @@ public class Journey implements Callable<Object>
 	private String vehicleName;
 	private JmsTemplate jmsTemplate;
 	private String queueName;
+    private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 	
 	private static Logger log  = Logger.getLogger(Journey.class);
 
@@ -50,7 +52,7 @@ public class Journey implements Callable<Object>
 				positionMessage.put("vehicle", vehicleName);
 				positionMessage.put("lat", lat);
 				positionMessage.put("long", longitude);
-				positionMessage.put("time", new java.util.Date().toString());
+				positionMessage.put("time", formatter.format(new java.util.Date()));
 	
 				sendToQueue(positionMessage);
 	
