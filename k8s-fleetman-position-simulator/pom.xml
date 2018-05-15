@@ -44,18 +44,6 @@
 		
 	</dependencies>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>Camden.RELEASE</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -82,7 +70,7 @@
 									<descriptorRef>artifact</descriptorRef>
 								</assembly>
 								<tags>
-									<tag>latest</tag>
+									<tag>release1</tag>
 								</tags>
 							</build>
 						</image>
