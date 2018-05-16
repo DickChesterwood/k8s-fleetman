@@ -31,12 +31,26 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
+  name: fleetman-api-gateway
+spec:
+  selector:
+    app: api-gateway
+  ports:
+  - name: http
+    port: 8080
+    nodePort: 30000
+  type: NodePort
+---
+kind: Service
+apiVersion: v1
+metadata:
   name: fleetman-webapp
 spec:
   selector:
     app: webapp
   ports:
   - name: http
-    port: 8080
-    nodePort: 30030
+    port: 80
+    nodePort: 30040
   type: NodePort
+
