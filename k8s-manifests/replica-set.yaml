@@ -99,4 +99,4 @@ spec:
       containers:
       - name: fleetman-webapp
         image: richardchesterwood/k8s-fleetman-webapp-angular:release1
-
+        imagePullPolicy: Always     
