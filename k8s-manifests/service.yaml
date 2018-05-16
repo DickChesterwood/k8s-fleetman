@@ -38,7 +38,7 @@ spec:
   ports:
   - name: http
     port: 8080
-    nodePort: 30000
+    nodePort: 30030
   type: NodePort
 ---
 kind: Service
