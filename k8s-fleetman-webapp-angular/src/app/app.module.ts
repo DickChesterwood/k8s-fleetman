@@ -20,9 +20,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DOCUMENT } from '@angular/platform-browser';
 
 const stompConfig: StompConfig = {
-     // Which server?
+     // Which server? TODO.
      // url: "ws://" + window.location.hostname + ":30030/updates",
-     url: "ws://" + window.location.hostname + ":8080/updates",
+     url: "ws://" + window.location.hostname + "/api/updates",
      headers: {
      },
      // How often to heartbeat?
