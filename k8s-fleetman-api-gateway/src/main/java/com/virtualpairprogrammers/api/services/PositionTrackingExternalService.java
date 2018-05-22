@@ -26,7 +26,6 @@ public class PositionTrackingExternalService
 		return remoteService.getAllLatestPositionsSince(date);
 	}
 	
-	
 	public Collection<VehiclePosition> handleExternalServiceDown(Date since)
 	{
 		// as the external service is down, simply return "no updates"
