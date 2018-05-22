@@ -71,19 +71,15 @@
 				<configuration><executable>false</executable></configuration>
 			</plugin>			
 			
-			<!-- Just add this to the <build><plugins> section of your POM and make changes appropriately -->
-			
-			<plugin>
+ 			<plugin>
 				<groupId>io.fabric8</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>0.21.0</version>
 			
 				<configuration>			
-
 			        <!-- <dockerHost>unix:///var/run/docker.sock</dockerHost> -->
 			        <dockerHost>tcp://192.168.99.100:2376</dockerHost>  
                     <certPath>C:\Users\Richard\.docker\machine\machines\default</certPath>
-     
 			
 			        <verbose>true</verbose>
         			<extensions>true</extensions>
