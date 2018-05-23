@@ -22,6 +22,7 @@ spec:
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: production-microservice
+        imagePullPolicy: Always
 ---
 apiVersion: apps/v1
 kind: ReplicaSet
@@ -45,6 +46,7 @@ spec:
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: production-microservice
+        imagePullPolicy: Always
 ---
 apiVersion: apps/v1
 kind: ReplicaSet
@@ -68,6 +70,7 @@ spec:
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: production-microservice
+        imagePullPolicy: Always
 ---
 apiVersion: apps/v1
 kind: ReplicaSet
@@ -91,6 +94,7 @@ spec:
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: production-microservice
+        imagePullPolicy: Always
 ---
 apiVersion: apps/v1
 kind: ReplicaSet
@@ -114,3 +118,4 @@ spec:
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: production-microservice
+        imagePullPolicy: Always
