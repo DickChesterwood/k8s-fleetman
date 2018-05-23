@@ -25,8 +25,8 @@ export class MapComponent implements OnInit {
                     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                   })
     ],
-    zoom: 15,
-    center: latLng(53.38207,-1.48423)
+    zoom: 16,
+    center: latLng(53.375564, -1.506785)
   };
 
   onMapReady(map: Map) {
