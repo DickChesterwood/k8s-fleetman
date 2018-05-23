@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Vehicle } from './vehicle';
-import { Observable ,  Subscription, BehaviorSubject } from 'rxjs';
-
-import { of } from 'rxjs/observable/of';
+import { Observable ,  Subscription, BehaviorSubject ,  of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
