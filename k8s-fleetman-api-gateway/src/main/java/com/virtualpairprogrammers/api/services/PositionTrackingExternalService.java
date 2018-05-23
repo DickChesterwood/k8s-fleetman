@@ -31,5 +31,14 @@ public class PositionTrackingExternalService
 		// as the external service is down, simply return "no updates"
 		return new HashSet<>();
 	}
+
+	@HystrixCommand(fallbackMethod="getHistoryForDown")
+	public Collection<VehiclePosition> getHistoryFor(String vehicleName) {
+		return remoteService.getHistoryFor(vehicleName);
+	}
+	
+	public Collection<VehiclePosition> getHistoryForDown(String vehicleName) {
+		return new HashSet<>();
+	}
 	
 }

@@ -37,6 +37,12 @@ public class PositionReportsController
 		}
 	}
 	
+	@RequestMapping(method=RequestMethod.GET, value="/history/{vehicleName}")
+	public Collection<VehiclePosition> getEntireHistoryForVehicle(@PathVariable String vehicleName) throws VehicleNotFoundException
+	{
+		return this.data.getHistoryFor(vehicleName);
+	}
+	
 	@RequestMapping(method=RequestMethod.GET, value="/vehicles/")
 	public Collection<VehiclePosition> getUpdatedPositions(@RequestParam(value="since", required=false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Date since)
 	{

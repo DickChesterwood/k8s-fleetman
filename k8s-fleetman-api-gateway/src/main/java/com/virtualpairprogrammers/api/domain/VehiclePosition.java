@@ -23,14 +23,6 @@ public class VehiclePosition implements Comparable<VehiclePosition>
 	
 	VehiclePosition() {}
 	
-	VehiclePosition(String name, BigDecimal lat, BigDecimal lng, Date timestamp, BigDecimal speed) {
-		this.name = name;
-		this.lat = lat;
-		this.longitude = lng;
-		this.timestamp = timestamp;
-		this.speed = speed;
-	}
-
 	@Override
 	public int compareTo(VehiclePosition o) 
 	{

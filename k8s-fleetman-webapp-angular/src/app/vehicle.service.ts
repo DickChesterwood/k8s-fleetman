@@ -1,24 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Vehicle } from './vehicle';
 import { Observable ,  Subscription, BehaviorSubject ,  of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import {Message} from '@stomp/stompjs';
 import {StompService} from '@stomp/ng2-stompjs';
+
+import {  LatLng } from 'leaflet';
 
 @Injectable()
 export class VehicleService  {
 
   subscription: BehaviorSubject<Vehicle>;
   centerVehicle: BehaviorSubject<Vehicle>;
+  centerVehicleHistory: BehaviorSubject<LatLng[]>;
 
-  constructor(private _stompService: StompService) {
+  constructor(private _stompService: StompService, private http: HttpClient) {
     // Store local reference to Observable
     // for use with template ( | async )
     this.subscribe();
     this.subscription = new BehaviorSubject(null);
     this.centerVehicle = new BehaviorSubject(null);
+    this.centerVehicleHistory = new BehaviorSubject(null);
   }
 
   subscribe() {
@@ -44,5 +48,17 @@ export class VehicleService  {
 
   updateCenterVehicle(centerVehicle: Vehicle) {
     this.centerVehicle.next(centerVehicle);
+
+    if (centerVehicle == null)
+    {
+      this.centerVehicleHistory.next(null);
+    }
+    else
+    {
+      // call API gateway, get the history for this vehicle.
+      // TODO update this for a proper url and in config
+      this.http.get("http://localhost:8080/history/" + centerVehicle.name)
+             .subscribe( data => this.centerVehicleHistory.next(data));
+    }
   }
 }
