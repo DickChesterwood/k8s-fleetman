@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { VehiclesComponent } from './vehicles/vehicles.component';
 import { VehicleService } from './vehicle.service';
 
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { HttpClientModule }    from '@angular/common/http';
 import { MapComponent } from './map/map.component';
 
