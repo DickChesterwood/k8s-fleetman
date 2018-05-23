@@ -78,7 +78,7 @@
 			
 				<configuration>			
 			        <!-- <dockerHost>unix:///var/run/docker.sock</dockerHost> -->
-			        <dockerHost>tcp://192.168.99.100:2376</dockerHost>  
+			        <dockerHost>tcp://192.168.99.101:2376</dockerHost>  
                     <certPath>C:\Users\Richard\.docker\machine\machines\default</certPath>
 			
 			        <verbose>true</verbose>
