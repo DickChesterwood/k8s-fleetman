@@ -23,7 +23,10 @@ public class PositionTrackingExternalService
 	public Collection<VehiclePosition> getAllUpdatedPositionsSince(Date since)
 	{
 		String date = formatter.format(since);
-		return remoteService.getAllLatestPositionsSince(date);
+		
+		System.out.println("asked for positions since " + date);
+		Collection<VehiclePosition> results = remoteService.getAllLatestPositionsSince(date); 
+		return results;
 	}
 	
 	public Collection<VehiclePosition> handleExternalServiceDown(Date since)
