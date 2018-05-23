@@ -8,9 +8,12 @@ spec:
   ports:
   - name: console
     port: 8161
+    targetPort: 8161
+    nodePort: 30010
   - name: endpoint
     port: 61616
-  type: ClusterIP
+    targetPort: 61616
+  type: NodePort
 ---
 kind: Service
 apiVersion: v1
@@ -22,7 +25,8 @@ spec:
   ports:
   - name: http
     port: 8080
-  type: ClusterIP
+    nodePort: 30020
+  type: NodePort
 ---
 kind: Service
 apiVersion: v1
@@ -34,7 +38,8 @@ spec:
   ports:
   - name: http
     port: 8080
-  type: ClusterIP
+    nodePort: 30030
+  type: NodePort
 ---
 kind: Service
 apiVersion: v1
@@ -46,4 +51,4 @@ spec:
   ports:
   - name: http
     port: 80
-  type: LoadBalancer 
+  type: LoadBalancer
