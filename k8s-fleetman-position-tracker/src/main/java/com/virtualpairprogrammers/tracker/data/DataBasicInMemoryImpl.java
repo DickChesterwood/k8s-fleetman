@@ -2,6 +2,7 @@ package com.virtualpairprogrammers.tracker.data;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -127,5 +128,11 @@ public class DataBasicInMemoryImpl implements Data
 			}
 		}
 		return results;
+	}
+
+	@Override
+	public Collection<VehiclePosition> getHistoryFor(String vehicleName) throws VehicleNotFoundException 
+	{
+		return this.getAllReportsForVehicleSince(vehicleName, new Date(0L));
 	}
 }

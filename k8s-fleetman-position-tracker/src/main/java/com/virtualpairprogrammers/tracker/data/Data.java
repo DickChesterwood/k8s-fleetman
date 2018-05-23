@@ -18,4 +18,6 @@ public interface Data {
 	Collection<VehiclePosition> getLatestPositionsOfAllVehiclesUpdatedSince(Date since);
 
 	TreeSet<VehiclePosition> getAllReportsForVehicleSince(String name, Date timestamp) throws VehicleNotFoundException;
+
+	Collection<VehiclePosition> getHistoryFor(String vehicleName) throws VehicleNotFoundException;
 }

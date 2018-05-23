@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { icon, latLng, Layer, Marker, marker, tileLayer, Map, point } from 'leaflet';
+import { icon, latLng, Layer, Marker, marker, tileLayer, Map, point, polyline } from 'leaflet';
 
 import { VehicleService } from '../vehicle.service';
 import { Vehicle } from '../vehicle';
@@ -17,6 +17,7 @@ export class MapComponent implements OnInit {
   markers: Marker[] = [];
   map: Map;
   centerVehicle: string;
+  selectedVehicleHistory: polyline;
 
   options = {
     layers: [
@@ -38,7 +39,6 @@ export class MapComponent implements OnInit {
        if (vehicle == null) return;
        let foundIndex = this.markers.findIndex(existingMarker => existingMarker.options['title'] == vehicle.name);
 
-
        if (foundIndex == -1)
        {
          let newMarker = marker([vehicle.lat,vehicle.lng] ,
@@ -58,8 +58,9 @@ export class MapComponent implements OnInit {
         this.markers[foundIndex].setLatLng(latLng(vehicle.lat, vehicle.lng));
        }
        if (this.centerVehicle == vehicle.name) {
-         this.map.setView([vehicle.lat,vehicle.lng],
-                           this.map.getZoom(), {"animate": true});
+         //this.map.setView([vehicle.lat,vehicle.lng],
+        //                   this.map.getZoom(), {"animate": true});
+         this.selectedVehicleHistory.addLatLng(latLng(vehicle.lat, vehicle.lng));
        }
      });
 
@@ -74,6 +75,13 @@ export class MapComponent implements OnInit {
                          this.map.getZoom(), {
        				   	       "animate": true
        				  });
+     });
+
+     this.vehicleService.centerVehicleHistory.subscribe(newHistory => {
+       if (this.selectedVehicleHistory != null) this.selectedVehicleHistory.remove(this.map);
+       if (newHistory ==null) return;
+       this.selectedVehicleHistory = polyline(newHistory, {weight:10, opacity:0.5, color:'red'});
+       this.selectedVehicleHistory.addTo(this.map);
      });
    }
 }
