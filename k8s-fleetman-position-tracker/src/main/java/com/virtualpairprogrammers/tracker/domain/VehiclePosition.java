@@ -88,4 +88,10 @@ public class VehiclePosition implements Comparable<VehiclePosition>
 		return this.speed;
 	}
 
+	@Override
+	public String toString() {
+		return "VehiclePosition [name=" + name + ", lat=" + lat + ", longitude=" + longitude + ", timestamp="
+				+ timestamp + ", speed=" + speed + "]";
+	}
+
 }

@@ -13,6 +13,7 @@ import java.util.TreeSet;
 import org.gavaghan.geodesy.Ellipsoid;
 import org.gavaghan.geodesy.GeodeticCalculator;
 import org.gavaghan.geodesy.GlobalPosition;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import com.virtualpairprogrammers.tracker.domain.VehicleBuilder;
@@ -28,6 +29,7 @@ import com.virtualpairprogrammers.tracker.domain.VehiclePosition;
  * Use the database backed implementation in a production, clustered or cloud environment.
  */
 @Repository
+@Profile("standalone")
 public class DataBasicInMemoryImpl implements Data 
 {
 	private static final BigDecimal MPS_TO_MPH_FACTOR = new BigDecimal("2.236936");
