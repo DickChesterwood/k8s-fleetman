@@ -64,7 +64,7 @@ public class DataMongoDbImpl implements Data {
 	public Collection<VehiclePosition> getHistoryFor(String vehicleName) throws VehicleNotFoundException {
 		VehiclePosition position = new VehicleBuilder().withName(vehicleName).build();
 		Example<VehiclePosition> example = Example.of(position);
-		return mongoDb.findAll(example);
+		return new TreeSet<VehiclePosition>(mongoDb.findAll(example)); // just a hack to sort correctly
 	}
 
 }
