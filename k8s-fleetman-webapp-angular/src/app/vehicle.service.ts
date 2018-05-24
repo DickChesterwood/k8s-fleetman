@@ -14,7 +14,7 @@ export class VehicleService  {
 
   subscription: BehaviorSubject<Vehicle>;
   centerVehicle: BehaviorSubject<Vehicle>;
-  centerVehicleHistory: BehaviorSubject<LatLng[]>;
+  centerVehicleHistory: BehaviorSubject<any>;
 
   constructor(private _stompService: StompService, private http: HttpClient) {
     // Store local reference to Observable
