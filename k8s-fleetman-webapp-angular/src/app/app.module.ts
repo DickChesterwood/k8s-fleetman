@@ -19,15 +19,14 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { DOCUMENT } from '@angular/platform-browser';
 
 const stompConfig: StompConfig = {
-     // url: "ws://" + window.location.hostname + ":" + window.location.port + "/api/updates",
+     url: "ws://" + window.location.hostname + ":" + window.location.port + "/api/updates",
      // TODO will reinstate when dev complete.
-     url: "ws://localhost:8080/updates",
      headers: {
      },
      heartbeat_in: 0, // Typical value 0 - disabled
      heartbeat_out: 20000, // Typical value 20000 - every 20 seconds
      reconnect_delay: 5000,
-     debug: false
+     debug: true
 };
 
 @NgModule({
