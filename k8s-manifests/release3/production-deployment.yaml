@@ -138,5 +138,5 @@ spec:
     spec:
       containers:
       - name: fleetman-mongogb
-        image: mongodb
+        image: mongo:3.6.5-jessie
         imagePullPolicy: Always
