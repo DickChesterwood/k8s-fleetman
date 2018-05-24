@@ -17,7 +17,7 @@ export class MapComponent implements OnInit {
   markers: Marker[] = [];
   map: Map;
   centerVehicle: string;
-  selectedVehicleHistory: polyline;
+  selectedVehicleHistory;
 
   options = {
     layers: [
