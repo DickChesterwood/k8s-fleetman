@@ -70,7 +70,7 @@
 									<descriptorRef>artifact</descriptorRef>
 								</assembly>
 								<tags>
-									<tag>release1</tag>
+									<tag>release2</tag>
 								</tags>
 							</build>
 						</image>

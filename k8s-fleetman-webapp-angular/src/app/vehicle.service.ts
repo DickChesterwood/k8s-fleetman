@@ -56,8 +56,7 @@ export class VehicleService  {
     else
     {
       // call API gateway, get the history for this vehicle.
-      // TODO update this for a proper url and in config
-      this.http.get("http://localhost:8080/history/" + centerVehicle.name)
+      this.http.get("http://" + window.location.hostname + ":" + window.location.port + "/api/history/" + centerVehicle.name)
              .subscribe( data => this.centerVehicleHistory.next(data));
     }
   }
