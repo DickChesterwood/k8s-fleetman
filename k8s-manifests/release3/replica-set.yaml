@@ -119,3 +119,24 @@ spec:
         - name: SPRING_PROFILES_ACTIVE
           value: production-microservice
         imagePullPolicy: Always
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: mongodb
+  labels:
+    app: mongodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongodb
+  template:
+    metadata:
+      labels:
+        app: mongodb
+    spec:
+      containers:
+      - name: fleetman-mongogb
+        image: mongo:3.6.5-jessie
+        imagePullPolicy: Always
