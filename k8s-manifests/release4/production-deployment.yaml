@@ -154,7 +154,7 @@ spec:
          image: cvallance/mongo-k8s-sidecar
          env:
            - name: MONGO_SIDECAR_POD_LABELS
-             value: "app=mongo"
+             value: "app=mongodb"
            - name: KUBERNETES_MONGO_SERVICE_NAME
              value: fleetman-mongodb
  volumeClaimTemplates:
