@@ -155,6 +155,8 @@ spec:
          env:
            - name: MONGO_SIDECAR_POD_LABELS
              value: "app=mongo"
+           - name: KUBERNETES_MONGO_SERVICE_NAME
+             value: fleetman-mongodb
  volumeClaimTemplates:
   - metadata:
       name: mongo-persistent-storage
