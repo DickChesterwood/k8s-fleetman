@@ -51,9 +51,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
- name: fleetman-mongodb
+ name: mongo
  labels:
-   name: mongodb
+   name: mongo
 spec:
  ports:
  - port: 27017
