@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+  fleetman-queue:
+    image: richardchesterwood/k8s-fleetman-queue:release2
+    ports:
+      - '8161:8161'
+    networks:
+      - fleetman-private-network
+    environment:
+      - SPRING_PROFILES_ACTIVE=local-microservice
+
+  fleetman-webapp:
+    image: richardchesterwood/k8s-fleetman-webapp-angular:release2
+    ports:
+      - '80:80'
+    networks:
+      - fleetman-private-network
+    environment:
+      - SPRING_PROFILES_ACTIVE=local-microservice
+
+  fleetman-api-gateway:
+    image: richardchesterwood/k8s-fleetman-api-gateway:release2
+    ports:
+      - '8080:8080'
+    networks:
+      - fleetman-private-network
+    environment:
+      - SPRING_PROFILES_ACTIVE=local-microservice
+
+  fleetman-position-simulator:
+    image: richardchesterwood/k8s-fleetman-position-simulator:release2
+    networks:
+      - fleetman-private-network
+    environment:
+      - SPRING_PROFILES_ACTIVE=local-microservice
+
+  fleetman-position-tracker:
+    image: richardchesterwood/k8s-fleetman-position-tracker:release3
+    networks:
+      - fleetman-private-network
+    environment:
+      - SPRING_PROFILES_ACTIVE=local-microservice
+
+  fleetman-mongodb:
+    image: mongo:3.6.5-jessie
+    networks:
+      - fleetman-private-network
+    ports:
+      - '27017:27017'
+
+networks:
+   fleetman-private-network:
