@@ -60,4 +60,4 @@ spec:
    targetPort: 27017
  clusterIP: None
  selector:
-   app: mongodb
+   role: mongo
