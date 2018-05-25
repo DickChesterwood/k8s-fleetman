@@ -133,34 +133,31 @@ spec:
    spec:
      terminationGracePeriodSeconds: 10
      containers:
-     - name: mongodb
-       image: mongo
-       command:
-       - mongod
-       - "--replSet"
-       - rs0
-       - "--smallfiles"
-       - "--noprealloc"
-       ports:
-         - containerPort: 27017
-       volumeMounts:
-         - name: mongo-persistent-storage
-           mountPath: /data/db
-     - name: mongo-sidecar
-       image: cvallance/mongo-k8s-sidecar
-       env:
-       - name: MONGO\_SIDECAR\_POD\_LABELS
-         value: "app=mongo"
-   volumeClaimTemplates:
+       - name: mongodb
+         image: mongo
+         command:
+           - mongod
+           - "--replSet"
+           - rs0
+           - "--smallfiles"
+           - "--noprealloc"
+         ports:
+           - containerPort: 27017
+         volumeMounts:
+           - name: mongo-persistent-storage
+             mountPath: /data/db
+       - name: mongo-sidecar
+         image: cvallance/mongo-k8s-sidecar
+         env:
+           - name: MONGO\_SIDECAR\_POD\_LABELS
+             value: "app=mongo"
+  volumeClaimTemplates:
    - metadata:
      name: mongo-persistent-storage
-
-   annotations:
-     volume.beta.kubernetes.io/storage-class: "ssd"
-
-   spec:
-     accessModes: ["ReadWriteOnce"]
-
-   resources:
-     requests:
-       storage: 77Gi
+     annotations:
+       volume.beta.kubernetes.io/storage-class: "ssd"
+     spec:
+       accessModes: ["ReadWriteOnce"]
+     resources:
+       requests:
+         storage: 77Gi
