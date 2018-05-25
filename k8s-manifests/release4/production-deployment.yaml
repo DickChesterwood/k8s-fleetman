@@ -133,7 +133,7 @@ spec:
  template:
    metadata:
      labels:
-       app: mongodb
+        role: mongo
    spec:
      terminationGracePeriodSeconds: 10
      containers:
@@ -154,7 +154,7 @@ spec:
          image: cvallance/mongo-k8s-sidecar
          env:
            - name: MONGO_SIDECAR_POD_LABELS
-             value: "app=mongodb"
+             value: "role=mongo"
            - name: KUBERNETES_MONGO_SERVICE_NAME
              value: fleetman-mongodb
  volumeClaimTemplates:
