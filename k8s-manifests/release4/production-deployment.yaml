@@ -120,16 +120,13 @@ spec:
           value: production-microservice
         imagePullPolicy: Always
 ---
-apiVersion: apps/v1
+apiVersion: apps/v1beta1
 kind: StatefulSet
 metadata:
- name: mongodb
+ name: mongo
 spec:
  replicas: 3
- serviceName: "fleetman-mongodb"
- selector:
-   matchLabels:
-       app: mongodb
+ serviceName: "mongo"
  template:
    metadata:
      labels:
@@ -137,7 +134,7 @@ spec:
    spec:
      terminationGracePeriodSeconds: 10
      containers:
-       - name: mongodb
+       - name: mongo
          image: mongo
          command:
            - mongod
@@ -145,6 +142,8 @@ spec:
            - rs0
            - "--smallfiles"
            - "--noprealloc"
+           - "--bind_ip"
+           - "0.0.0.0"            
          ports:
            - containerPort: 27017
          volumeMounts:
@@ -156,7 +155,7 @@ spec:
            - name: MONGO_SIDECAR_POD_LABELS
              value: "role=mongo"
            - name: KUBERNETES_MONGO_SERVICE_NAME
-             value: fleetman-mongodb
+             value: mongo
  volumeClaimTemplates:
   - metadata:
       name: mongo-persistent-storage
@@ -166,3 +165,18 @@ spec:
       resources:
         requests:
           storage: 77Gi
+
+---
+# See https://github.com/cvallance/mongo-k8s-sidecar/issues/75
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: default-view
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: view
+subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: default
