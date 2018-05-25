@@ -125,8 +125,11 @@ kind: StatefulSet
 metadata:
  name: mongodb
 spec:
- serviceName: "fleetman-mongodb"
  replicas: 3
+ serviceName: "fleetman-mongodb"
+ selector:
+   matchLabels:
+       app: mongodb
  template:
    metadata:
      labels:
