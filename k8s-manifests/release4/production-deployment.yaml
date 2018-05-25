@@ -151,13 +151,13 @@ spec:
          env:
            - name: MONGO\_SIDECAR\_POD\_LABELS
              value: "app=mongo"
-  volumeClaimTemplates:
-   - metadata:
-     name: mongo-persistent-storage
-     annotations:
-       volume.beta.kubernetes.io/storage-class: "ssd"
-     spec:
-       accessModes: ["ReadWriteOnce"]
-     resources:
-       requests:
-         storage: 77Gi
+ volumeClaimTemplates:
+  - metadata:
+    name: mongo-persistent-storage
+    annotations:
+      volume.beta.kubernetes.io/storage-class: "ssd"
+    spec:
+      accessModes: ["ReadWriteOnce"]
+    resources:
+      requests:
+        storage: 77Gi
