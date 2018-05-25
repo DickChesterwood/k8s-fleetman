@@ -48,14 +48,16 @@ spec:
     port: 80
   type: LoadBalancer
 ---
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
-  name: fleetman-mongodb
+ name: fleetman-mongodb
+ labels:
+   name: mongodb
 spec:
-  selector:
-    app: mongodb
-  ports:
-  - name: mongoport
-    port: 27017
-  type: ClusterIP
+ ports:
+ - port: 27017
+   targetPort: 27017
+   clusterIP: None
+ selector:
+   app: mongodb
