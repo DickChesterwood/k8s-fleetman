@@ -153,7 +153,7 @@ spec:
        - name: mongo-sidecar
          image: cvallance/mongo-k8s-sidecar
          env:
-           - name: MONGO\_SIDECAR\_POD\_LABELS
+           - name: MONGO_SIDECAR_POD_LABELS
              value: "app=mongo"
  volumeClaimTemplates:
   - metadata:
