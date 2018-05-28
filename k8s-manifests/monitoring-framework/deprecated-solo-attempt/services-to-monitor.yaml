@@ -1,0 +1,12 @@
+# See coreos docs for full details
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: fleeman-monitoring
+    
+spec:
+  selector:
+    matchLabels:
+      monitoring: yes
+  #endpoints:
+  #- port: web
