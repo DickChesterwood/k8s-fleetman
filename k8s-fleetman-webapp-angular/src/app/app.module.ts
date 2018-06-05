@@ -18,9 +18,10 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { DOCUMENT } from '@angular/platform-browser';
 
+import {environment} from '../environments/environment';
+
 const stompConfig: StompConfig = {
-     url: "ws://" + window.location.hostname + ":" + window.location.port + "/api/updates",
-     // TODO will reinstate when dev complete.
+     url: "ws://" + environment.gatewayUrl + "/updates",
      headers: {
      },
      heartbeat_in: 0, // Typical value 0 - disabled

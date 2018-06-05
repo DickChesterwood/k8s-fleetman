@@ -29,7 +29,7 @@ import com.virtualpairprogrammers.tracker.domain.VehiclePosition;
  * Use the database backed implementation in a production, clustered or cloud environment.
  */
 @Repository
-@Profile("standalone")
+@Profile({"standalone","localhost"})
 public class DataBasicInMemoryImpl implements Data 
 {
 	private static final BigDecimal MPS_TO_MPH_FACTOR = new BigDecimal("2.236936");
