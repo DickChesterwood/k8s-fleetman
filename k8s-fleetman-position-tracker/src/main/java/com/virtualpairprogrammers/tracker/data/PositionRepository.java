@@ -4,10 +4,12 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.virtualpairprogrammers.tracker.domain.VehiclePosition;
 
+@Profile({"localhost", "production-microservice", "local-microservice"})
 public interface PositionRepository extends MongoRepository<VehiclePosition, String> {
 	List<VehiclePosition> findByNameAndTimestampAfter(String name, Date timestamp);
 	Collection<VehiclePosition> findByTimestampAfter(Date since);

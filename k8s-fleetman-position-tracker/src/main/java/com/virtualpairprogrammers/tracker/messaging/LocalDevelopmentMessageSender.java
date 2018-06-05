@@ -24,7 +24,7 @@ import com.virtualpairprogrammers.tracker.domain.VehiclePosition;
  * @author Richard Chesterwood
  *
  */
-@Profile("standalone")
+@Profile({"standalone"})
 @Component
 public class LocalDevelopmentMessageSender 
 {

@@ -1,0 +1,63 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: fleetman-queue
+spec:
+  selector:
+    app: queue
+  ports:
+  - name: console
+    port: 8161
+  - name: endpoint
+    port: 61616
+  type: ClusterIP
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: fleetman-position-tracker
+spec:
+  selector:
+    app: tracker
+  ports:
+  - name: http
+    port: 8080
+  type: ClusterIP
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: fleetman-api-gateway
+spec:
+  selector:
+    app: api-gateway
+  ports:
+  - name: http
+    port: 8080
+  type: ClusterIP
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: fleetman-webapp
+spec:
+  selector:
+    app: webapp
+  ports:
+  - name: http
+    port: 80
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+ name: mongo
+ labels:
+   name: mongo
+spec:
+ ports:
+ - port: 27017
+   targetPort: 27017
+ clusterIP: None
+ selector:
+   role: mongo

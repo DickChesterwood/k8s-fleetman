@@ -81,7 +81,7 @@
 									<descriptorRef>artifact</descriptorRef>
 								</assembly>
 								<tags>
-									<tag>release3</tag>
+									<tag>release4</tag>
 								</tags>
 							</build>
 						</image>

@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  gatewayUrl: window.location.hostname + ":" + window.location.port + "/api"
 };
