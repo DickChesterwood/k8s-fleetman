@@ -1,0 +1,14 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: Prometheus
+metadata:
+  name: prometheus-frontend
+  labels:
+    prometheus: frontend
+spec:
+  version: v1.3.0
+  # Define that all ServiceMonitor TPRs with the label `tier = frontend` should be included
+  # into the server's configuration.
+  serviceMonitors:
+  - selector:
+      matchLabels:
+        monitor: yes
