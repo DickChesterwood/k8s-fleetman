@@ -68,8 +68,8 @@
 				<version>0.21.0</version>
 
 				<configuration>
-			        <dockerHost>tcp://192.168.99.101:2376</dockerHost>  
-                    <certPath>C:\cygwin64\home\Richard\.minikube\certs</certPath>
+			        <dockerHost>tcp://192.168.99.100:2376</dockerHost>  
+                    <certPath>C:\Users\Richard\.docker\machine\machines\default</certPath>
 				
                     <verbose>true</verbose>
 					<images>
@@ -81,7 +81,7 @@
 									<descriptorRef>artifact</descriptorRef>
 								</assembly>
 								<tags>
-									<tag>release4</tag>
+									<tag>replicated</tag>
 								</tags>
 							</build>
 						</image>

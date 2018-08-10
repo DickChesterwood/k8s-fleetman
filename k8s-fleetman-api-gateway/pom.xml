@@ -94,7 +94,7 @@
 									<descriptorRef>artifact</descriptorRef>
 								</assembly>
 								<tags>
-									<tag>release2</tag>
+									<tag>replicated</tag>
 								</tags>
 							</build>
 						</image>

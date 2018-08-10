@@ -26,11 +26,11 @@ public class VehicleController
 {	
 	@Autowired
 	private SimpMessageSendingOperations messagingTemplate;
-	
+
 	@Autowired
 	private PositionTrackingExternalService externalService;
-	
-	private Date lastUpdateTime = null;
+
+	private Date lastUpdateTime;
 
 	@GetMapping("/")
 	@ResponseBody
@@ -42,10 +42,10 @@ public class VehicleController
 	{
 		return "<p>Fleetman API Gateway at " + new Date() + "</p>";
 	}
-	
+
 	@GetMapping("/history/{vehicleName}")
 	@ResponseBody
-    @CrossOrigin(origins = "*")
+	@CrossOrigin(origins = "*")
 	public Collection<LatLong> getHistoryFor(@PathVariable("vehicleName") String vehicleName)
 	{
 		Collection<LatLong> results = new ArrayList<>();
@@ -58,15 +58,15 @@ public class VehicleController
 		Collections.reverse((List<?>) results);
 		return results;
 	}
-	
-    @Scheduled(fixedRate=100)
-    public void updatePositions()
-    {
-    	Collection<VehiclePosition> results = externalService.getAllUpdatedPositionsSince(lastUpdateTime);
-    	this.lastUpdateTime = new Date();
-    	for (VehiclePosition next: results)
-    	{
+
+	@Scheduled(fixedRate=2000)
+	public void updatePositions()
+	{
+		Collection<VehiclePosition> results = externalService.getAllUpdatedPositionsSince(lastUpdateTime);
+		this.lastUpdateTime = new Date();
+		for (VehiclePosition next: results)
+		{
 			this.messagingTemplate.convertAndSend("/vehiclepositions/messages", next);
-    	}
-    }
+		}
+	}
 }
