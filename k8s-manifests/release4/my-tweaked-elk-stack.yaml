@@ -130,8 +130,6 @@ spec:
         - name: varlibdockercontainers
           mountPath: /var/lib/docker/containers
           readOnly: true
-      #nodeSelector:
-      #  alpha.kubernetes.io/fluentd-ds-ready: "true"
       terminationGracePeriodSeconds: 30
       volumes:
       - name: varlog
@@ -212,7 +210,7 @@ spec:
   - metadata:
       name: es-persistent-storage
     spec:
-      storageClassName: ssd
+      storageClassName: cloud-ssd
       accessModes: [ "ReadWriteOnce" ]
       resources:
         requests:
@@ -251,8 +249,6 @@ spec:
         env:
           - name: "ELASTICSEARCH_URL"
             value: "http://elasticsearch-logging:9200"
-         # - name: "KIBANA_BASE_URL"
-         #   value: "/api/v1/proxy/namespaces/kube-system/services/kibana-logging"
         ports:
         - containerPort: 5601
           name: ui

@@ -41,7 +41,7 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+	
 	</dependencies>
 
 	<build>
@@ -70,7 +70,7 @@
 									<descriptorRef>artifact</descriptorRef>
 								</assembly>
 								<tags>
-									<tag>release2</tag>
+									<tag>replicated</tag>
 								</tags>
 							</build>
 						</image>

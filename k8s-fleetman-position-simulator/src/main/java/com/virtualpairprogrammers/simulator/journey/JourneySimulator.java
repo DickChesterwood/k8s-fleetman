@@ -71,7 +71,6 @@ public class JourneySimulator implements Runnable {
 			if (threadPool.isShutdown())
 			{
 				stillRunning = false;
-				System.out.println("Asked to finish!");
 			}
 		}
 	}

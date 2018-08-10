@@ -19,15 +19,17 @@ public class PositionTrackingExternalService
 	
     private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 	
-	@HystrixCommand(fallbackMethod="handleExternalServiceDown")
+	//@HystrixCommand(fallbackMethod="handleExternalServiceDown")
 	public Collection<VehiclePosition> getAllUpdatedPositionsSince(Date since)
 	{
 		String date = formatter.format(since);
-		return remoteService.getAllLatestPositionsSince(date);
+		Collection<VehiclePosition> results = remoteService.getAllLatestPositionsSince(date);
+		return results;
 	}
 	
 	public Collection<VehiclePosition> handleExternalServiceDown(Date since)
 	{
+		System.out.println("hystrix triggered.");
 		// as the external service is down, simply return "no updates"
 		return new HashSet<>();
 	}
