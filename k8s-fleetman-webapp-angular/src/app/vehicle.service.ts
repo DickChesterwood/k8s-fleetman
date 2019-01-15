@@ -56,9 +56,7 @@ export class VehicleService  {
     else
     {
       // call API gateway, get the history for this vehicle.
-      // tODO resotre this
-      // this.http.get("http://" + window.location.hostname + ":" + window.location.port + "/api/history/" + centerVehicle.name);
-      this.http.get("http://localhost:8080/history/" + centerVehicle.name);
+      this.http.get("http://" + window.location.hostname + ":" + window.location.port + "/api/history/" + centerVehicle.name);
     }
   }
 }
