@@ -652,7 +652,7 @@ kubelet:
     ## Enable scraping the kubelet over https. For requirements to enable this see
     ## https://github.com/prometheus-operator/prometheus-operator/issues/926
     ##
-    https: true
+    https: false
 
     ## Enable scraping /metrics/cadvisor from kubelet's service
     ##
@@ -770,8 +770,8 @@ kubeControllerManager:
   service:
     port: 10252
     targetPort: 10252
-    # selector:
-    #   component: kube-controller-manager
+    selector:
+      k8s-app: kube-controller-manager
 
   serviceMonitor:
     ## Scrape interval. If not set, the Prometheus default scrape interval is used.
@@ -809,38 +809,12 @@ kubeControllerManager:
 ## Component scraping coreDns. Use either this or kubeDns
 ##
 coreDns:
-  enabled: true
-  service:
-    port: 9153
-    targetPort: 9153
-    # selector:
-    #   k8s-app: kube-dns
-  serviceMonitor:
-    ## Scrape interval. If not set, the Prometheus default scrape interval is used.
-    ##
-    interval: ""
-
-    ## 	metric relabel configs to apply to samples before ingestion.
-    ##
-    metricRelabelings: []
-    # - action: keep
-    #   regex: 'kube_(daemonset|deployment|pod|namespace|node|statefulset).+'
-    #   sourceLabels: [__name__]
-
-    # 	relabel configs to apply to samples before ingestion.
-    ##
-    relabelings: []
-    # - sourceLabels: [__meta_kubernetes_pod_node_name]
-    #   separator: ;
-    #   regex: ^(.*)$
-    #   targetLabel: nodename
-    #   replacement: $1
-    #   action: replace
+  enabled: false
 
 ## Component scraping kubeDns. Use either this or coreDns
 ##
 kubeDns:
-  enabled: false
+  enabled: true
   service:
     dnsmasq:
       port: 10054
@@ -848,8 +822,8 @@ kubeDns:
     skydns:
       port: 10055
       targetPort: 10055
-    # selector:
-    #   k8s-app: kube-dns
+    selector:
+      k8s-app: kube-dns
   serviceMonitor:
     ## Scrape interval. If not set, the Prometheus default scrape interval is used.
     ##
@@ -963,8 +937,8 @@ kubeScheduler:
   service:
     port: 10251
     targetPort: 10251
-    # selector:
-    #   component: kube-scheduler
+    selector:
+      k8s-app: kube-scheduler
 
   serviceMonitor:
     ## Scrape interval. If not set, the Prometheus default scrape interval is used.
@@ -1002,45 +976,7 @@ kubeScheduler:
 ## Component scraping kube proxy
 ##
 kubeProxy:
-  enabled: true
-
-  ## If your kube proxy is not deployed as a pod, specify IPs it can be found on
-  ##
-  endpoints: []
-  # - 10.141.4.22
-  # - 10.141.4.23
-  # - 10.141.4.24
-
-  service:
-    port: 10249
-    targetPort: 10249
-    # selector:
-    #   k8s-app: kube-proxy
-
-  serviceMonitor:
-    ## Scrape interval. If not set, the Prometheus default scrape interval is used.
-    ##
-    interval: ""
-
-    ## Enable scraping kube-proxy over https.
-    ## Requires proper certs (not self-signed) and delegated authentication/authorization checks
-    ##
-    https: false
-
-    ## 	metric relabel configs to apply to samples before ingestion.
-    ##
-    metricRelabelings: []
-    # - action: keep
-    #   regex: 'kube_(daemonset|deployment|pod|namespace|node|statefulset).+'
-    #   sourceLabels: [__name__]
-
-    # 	relabel configs to apply to samples before ingestion.
-    ##
-    relabelings: []
-    # - action: keep
-    #   regex: 'kube_(daemonset|deployment|pod|namespace|node|statefulset).+'
-    #   sourceLabels: [__name__]
-
+  enabled: false
 
 ## Component scraping kube state metrics
 ##
