@@ -13,4 +13,4 @@ receivers:
   - channel: '#alerts'
     icon_emoji: ':bell:'
     send_resolved: true
-    text: "<!channel> \nsummary: {{ .CommonAnnotations.summary }}\ndescription: {{ .CommonAnnotations.description }}"
+    text: "<!channel> \nsummary: {{ .CommonAnnotations.summary }}\ndescription: {{ .CommonAnnotations.description }}\nmessage: {{ .CommonAnnotations.message }}"
