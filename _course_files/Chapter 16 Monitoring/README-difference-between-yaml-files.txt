@@ -10,7 +10,11 @@ The changes were made due to changes in the latest versions of Kubernetes, and I
 
 BUT:
  
-If you are planning to deploy to a production *Kops* cluster (EKS is fine), please note that the version shipped here has removed several control plane alerts. You would probably want to get the latest version of the monitoring stack (with all alerts enabled) from their github Helm chart.
+If you are planning to deploy to a production *Kops* cluster (EKS is fine), please note that the version shipped here has removed several control plane alerts. I needed to remove these alerts because Kops users would get spurious control plane (master) alerts which can only be silenced via an awkward workaround (see below).
+
+So you could install my kops-monitoring.yaml to your cluster, but there's a chance you might be missing out on some valuable alerts. So I recommend for a production cluster, get the latest version of the monitoring stack (with all alerts enabled) from https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
+
+The section in the course on "Helm" explains how to generate the yaml from their Helm chart.
 
 Then you would need to make a change to your cluster as follows:
 
