@@ -24,28 +24,6 @@ spec:
   groups:
   - name: kubernetes-system-apiserver
     rules:
-    - alert: KubeClientCertificateExpiration
-      annotations:
-        description: A client certificate used to authenticate to the apiserver is expiring in less than 7.0 days.
-        runbook_url: {{ .Values.defaultRules.runbookUrl }}alert-name-kubeclientcertificateexpiration
-        summary: Client certificate is about to expire.
-      expr: apiserver_client_certificate_expiration_seconds_count{job="apiserver"} > 0 and on(job) histogram_quantile(0.01, sum by (job, le) (rate(apiserver_client_certificate_expiration_seconds_bucket{job="apiserver"}[5m]))) < 604800
-      labels:
-        severity: warning
-{{- if .Values.defaultRules.additionalRuleLabels }}
-{{ toYaml .Values.defaultRules.additionalRuleLabels | indent 8 }}
-{{- end }}
-    - alert: KubeClientCertificateExpiration
-      annotations:
-        description: A client certificate used to authenticate to the apiserver is expiring in less than 24.0 hours.
-        runbook_url: {{ .Values.defaultRules.runbookUrl }}alert-name-kubeclientcertificateexpiration
-        summary: Client certificate is about to expire.
-      expr: apiserver_client_certificate_expiration_seconds_count{job="apiserver"} > 0 and on(job) histogram_quantile(0.01, sum by (job, le) (rate(apiserver_client_certificate_expiration_seconds_bucket{job="apiserver"}[5m]))) < 86400
-      labels:
-        severity: critical
-{{- if .Values.defaultRules.additionalRuleLabels }}
-{{ toYaml .Values.defaultRules.additionalRuleLabels | indent 8 }}
-{{- end }}
     - alert: AggregatedAPIErrors
       annotations:
         description: An aggregated API {{`{{`}} $labels.name {{`}}`}}/{{`{{`}} $labels.namespace {{`}}`}} has reported errors. It has appeared unavailable {{`{{`}} $value | humanize {{`}}`}} times averaged over the past 10m.
