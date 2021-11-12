@@ -1,3 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: monitoring
 ---
 # Source: kube-prometheus-stack/charts/grafana/templates/podsecuritypolicy.yaml
 apiVersion: policy/v1beta1
@@ -39626,37 +39630,6 @@ subjects:
   - kind: ServiceAccount
     name: monitoring-kube-prometheus-admission
     namespace: monitoring
----
-# Source: kube-prometheus-stack/charts/grafana/templates/tests/test.yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: monitoring-grafana-test
-  labels:
-    helm.sh/chart: grafana-6.17.2
-    app.kubernetes.io/name: grafana
-    app.kubernetes.io/instance: monitoring
-    app.kubernetes.io/version: "8.2.1"
-    app.kubernetes.io/managed-by: Helm
-  annotations:
-    "helm.sh/hook": test-success
-  namespace: monitoring
-spec:
-  serviceAccountName: monitoring-grafana-test
-  containers:
-    - name: monitoring-test
-      image: "bats/bats:v1.4.1"
-      imagePullPolicy: "IfNotPresent"
-      command: ["/opt/bats/bin/bats", "-t", "/tests/run.sh"]
-      volumeMounts:
-        - mountPath: /tests
-          name: tests
-          readOnly: true
-  volumes:
-  - name: tests
-    configMap:
-      name: monitoring-grafana-test
-  restartPolicy: Never
 ---
 # Source: kube-prometheus-stack/templates/prometheus-operator/admission-webhooks/job-patch/job-createSecret.yaml
 apiVersion: batch/v1
