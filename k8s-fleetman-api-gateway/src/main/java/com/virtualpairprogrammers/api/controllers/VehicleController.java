@@ -20,6 +20,8 @@ import com.virtualpairprogrammers.api.domain.LatLong;
 import com.virtualpairprogrammers.api.domain.VehiclePosition;
 import com.virtualpairprogrammers.api.services.PositionTrackingExternalService;
 
+import javax.annotation.PostConstruct;
+
 @Controller
 @RequestMapping("/")
 public class VehicleController 
@@ -31,6 +33,11 @@ public class VehicleController
 	private PositionTrackingExternalService externalService;
 
 	private Date lastUpdateTime;
+
+	@PostConstruct
+	public void init() {
+		lastUpdateTime = new Date();
+	}
 
 	@GetMapping("/")
 	@ResponseBody
