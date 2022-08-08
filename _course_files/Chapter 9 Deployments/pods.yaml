@@ -1,13 +1,24 @@
 
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   name: webapp
 spec:
   # minReadySeconds: 30
   selector:
     matchLabels:
-      app: webapp
+      app: webapp  
+  strategy:
+    canary:
+      steps:
+      - setWeight: 20
+      - pause: {}
+      - setWeight: 40
+      - pause: {duration: 10}
+      - setWeight: 60
+      - pause: {duration: 10}
+      - setWeight: 80
+      - pause: {duration: 10}
   replicas: 3
   template: # template for the pods
     metadata:
