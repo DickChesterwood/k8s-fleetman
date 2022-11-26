@@ -1,5 +1,5 @@
 global:
-  slack_api_url: '<<add your slack endpoint here>>'
+  slack_api_url: 'enter your webhook URL here. Leave the quote marks in place'
 route:
   group_by: ['alertname']
   group_wait: 5s
@@ -13,4 +13,4 @@ receivers:
   - channel: '#alerts'
     icon_emoji: ':bell:'
     send_resolved: true
-    text: "<!channel> \nsummary: {{ .CommonAnnotations.summary }}\ndescription: {{ .CommonAnnotations.description }}"
+    text: "<!channel> \nsummary: {{ .CommonAnnotations.summary }}\ndescription: {{ .CommonAnnotations.description }}\nmessage: {{ .CommonAnnotations.message }}"

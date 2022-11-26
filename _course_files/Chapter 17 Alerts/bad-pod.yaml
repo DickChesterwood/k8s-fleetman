@@ -1,0 +1,18 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: bad-deployment
+spec:
+  selector:
+    matchLabels:
+      app: bad
+  replicas: 2 
+  template:
+    metadata:
+      labels:
+        app: bad
+    spec:
+      containers:
+      - name: bad
+        image: ubuntu:18.04
+        command: ["10 print('it is 1982')\ni20 goto 10"]
