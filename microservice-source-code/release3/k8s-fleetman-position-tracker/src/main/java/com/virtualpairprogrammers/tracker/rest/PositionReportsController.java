@@ -1,5 +1,7 @@
 package com.virtualpairprogrammers.tracker.rest;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 
@@ -20,6 +22,8 @@ import com.virtualpairprogrammers.tracker.domain.VehiclePosition;
 @RestController
 public class PositionReportsController 
 {
+    private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+
 	@Autowired
 	private Data data;
 	
@@ -44,8 +48,14 @@ public class PositionReportsController
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="/vehicles/")
-	public Collection<VehiclePosition> getUpdatedPositions(@RequestParam(value="since", required=false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Date since)
+	public Collection<VehiclePosition> getUpdatedPositions(@RequestParam(value="since", required=false) String sinceStr)
 	{
+		Date since;
+		try {
+			since = formatter.parse(sinceStr);
+		} catch (ParseException e) {
+			throw new RuntimeException(e);
+		}
 		return data.getLatestPositionsOfAllVehiclesUpdatedSince(since);
 	}
 }
