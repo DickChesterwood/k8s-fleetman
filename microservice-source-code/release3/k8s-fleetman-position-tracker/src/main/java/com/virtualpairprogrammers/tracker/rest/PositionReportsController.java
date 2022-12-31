@@ -1,18 +1,13 @@
 package com.virtualpairprogrammers.tracker.rest;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Collection;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.virtualpairprogrammers.tracker.data.Data;
@@ -22,8 +17,6 @@ import com.virtualpairprogrammers.tracker.domain.VehiclePosition;
 @RestController
 public class PositionReportsController 
 {
-    private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
-
 	@Autowired
 	private Data data;
 	
@@ -48,14 +41,8 @@ public class PositionReportsController
 	}
 	
 	@RequestMapping(method=RequestMethod.GET, value="/vehicles/")
-	public Collection<VehiclePosition> getUpdatedPositions(@RequestParam(value="since", required=false) String sinceStr)
+	public Collection<VehiclePosition> getAllPositions()
 	{
-		Date since;
-		try {
-			since = formatter.parse(sinceStr);
-		} catch (ParseException e) {
-			throw new RuntimeException(e);
-		}
-		return data.getLatestPositionsOfAllVehiclesUpdatedSince(since);
+		return data.getLatestPositionsOfAllVehicles();
 	}
 }

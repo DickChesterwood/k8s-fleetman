@@ -4,9 +4,6 @@ import { Observable ,  Subscription, BehaviorSubject ,  of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import {Message} from '@stomp/stompjs';
-import {StompService} from '@stomp/ng2-stompjs';
-
 import {  LatLng } from 'leaflet';
 
 @Injectable()
@@ -16,7 +13,7 @@ export class VehicleService  {
   centerVehicle: BehaviorSubject<Vehicle>;
   centerVehicleHistory: BehaviorSubject<any>;
 
-  constructor(private _stompService: StompService, private http: HttpClient) {
+  constructor(private http: HttpClient) {
     // Store local reference to Observable
     // for use with template ( | async )
     this.subscribe();
@@ -25,14 +22,8 @@ export class VehicleService  {
     this.centerVehicleHistory = new BehaviorSubject(null);
   }
 
-  subscribe() {
-    // Stream of messages
-    var messages = this._stompService.subscribe('/vehiclepositions/messages');
-    // Subscribe a function to be run on_next message
-    messages.subscribe(this.onMessage);
-  }
-
   /** Consume a message from the _stompService */
+  /*
   onMessage = (message: Message) => {
 
     let body = JSON.parse(message.body);
@@ -45,6 +36,7 @@ export class VehicleService  {
                                 Number(body.speed));
     this.subscription.next(newVehicle);
   }
+  */
 
   updateCenterVehicle(centerVehicle: Vehicle) {
     this.centerVehicle.next(centerVehicle);

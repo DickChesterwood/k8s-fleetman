@@ -7,8 +7,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.simp.SimpMessageSendingOperations;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,13 +23,8 @@ import com.virtualpairprogrammers.api.services.PositionTrackingExternalService;
 public class VehicleController 
 {	
 	@Autowired
-	private SimpMessageSendingOperations messagingTemplate;
-	
-	@Autowired
 	private PositionTrackingExternalService externalService;
 	
-	private Date lastUpdateTime = new java.util.Date();
-
 	@GetMapping("/")
 	@ResponseBody
 	/**
@@ -40,7 +33,7 @@ public class VehicleController
 	 */
 	public String apiTestUrl()
 	{
-		return "<p>Fleetman API Gateway at " + new Date() + "</p>";
+		return "<p>Fleetman API Gateway at 2023 Edition" + new Date() + "</p>";
 	}
 	
 	@GetMapping("/history/{vehicleName}")
@@ -59,14 +52,12 @@ public class VehicleController
 		return results;
 	}
 	
-    @Scheduled(fixedRate=100)
-    public void updatePositions()
+	@GetMapping("/vehicles/")
+	@ResponseBody
+    @CrossOrigin(origins = "*")
+    public Collection<VehiclePosition> getAllVehiclePositions()
     {
-    	Collection<VehiclePosition> results = externalService.getAllUpdatedPositionsSince(lastUpdateTime);
-    	this.lastUpdateTime = new Date();
-    	for (VehiclePosition next: results)
-    	{
-			this.messagingTemplate.convertAndSend("/vehiclepositions/messages", next);
-    	}
+    	Collection<VehiclePosition> results = externalService.getAllPositions();
+    	return results;
     }
 }
