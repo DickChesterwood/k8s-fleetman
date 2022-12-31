@@ -1,8 +1,8 @@
-FROM openjdk:8u131-jre
+FROM arm64v8/amazoncorretto:17.0.5-al2022-RC-headless
 
 MAINTAINER Richard Chesterwood "contact@virtualpairprogrammers.com"
 
-ADD maven/positionreceiver-0.0.1-SNAPSHOT.jar webapp.jar
+ADD target/positionreceiver-0.0.1-SNAPSHOT.jar webapp.jar
 
 EXPOSE 8080
 
