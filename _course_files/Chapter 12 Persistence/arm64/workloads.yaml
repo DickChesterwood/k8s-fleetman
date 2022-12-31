@@ -98,7 +98,7 @@ spec:
     spec:
       containers:
       - name: webapp
-        image: richardchesterwood/k8s-fleetman-webapp-angular:release2-multi
+        image: richardchesterwood/k8s-fleetman-webapp-angular:release2-arm64testing
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: production-microservice

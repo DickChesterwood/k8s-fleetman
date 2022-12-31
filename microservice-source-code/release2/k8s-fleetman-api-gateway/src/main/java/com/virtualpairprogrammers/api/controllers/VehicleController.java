@@ -20,6 +20,7 @@ import com.virtualpairprogrammers.api.services.PositionTrackingExternalService;
 
 @Controller
 @RequestMapping("/")
+@CrossOrigin(origins = "*")
 public class VehicleController 
 {	
 	@Autowired
