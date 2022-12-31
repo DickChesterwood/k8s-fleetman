@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
+import org.slf4j.*;
 
-import org.apache.log4j.Logger;
 import org.springframework.jms.UncategorizedJmsException;
 import org.springframework.jms.core.JmsTemplate;
 
@@ -23,7 +23,7 @@ public class Journey implements Callable<Object>
 	private String queueName;
     private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
 	
-	private static Logger log  = Logger.getLogger(Journey.class);
+        Logger log = LoggerFactory.getLogger(Journey.class);
 
 	public Journey(String vehicleName, List<String> positions, JmsTemplate jmsTemplate, String queueName) 
 	{
@@ -89,7 +89,6 @@ public class Journey implements Callable<Object>
 	}
 
 	private static void delay(double d) throws InterruptedException {
-		log.debug("Sleeping for " + d + " millsecs");
 		Thread.sleep((long) d);
 	}
 

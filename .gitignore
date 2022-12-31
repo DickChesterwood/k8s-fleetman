@@ -4,3 +4,5 @@
 bin/
 target/
 /.recommenders/
+.DS_Store
+.mvn
