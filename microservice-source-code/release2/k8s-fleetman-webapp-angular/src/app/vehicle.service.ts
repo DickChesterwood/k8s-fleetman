@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Vehicle } from './vehicle';
-import { Observable ,  Subscription, BehaviorSubject ,  of } from 'rxjs';
+import { Observable ,  Subscription, BehaviorSubject ,  of, interval } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
@@ -12,31 +12,31 @@ export class VehicleService  {
   subscription: BehaviorSubject<Vehicle>;
   centerVehicle: BehaviorSubject<Vehicle>;
   centerVehicleHistory: BehaviorSubject<any>;
+  timedUpdate: Subscription;
+  source = interval(1000);
+
 
   constructor(private http: HttpClient) {
     // Store local reference to Observable
     // for use with template ( | async )
-    this.subscribe();
     this.subscription = new BehaviorSubject(null);
     this.centerVehicle = new BehaviorSubject(null);
     this.centerVehicleHistory = new BehaviorSubject(null);
+    this.timedUpdate = this.source.subscribe(val =>   this.http.get("http://" + window.location.hostname + ":" + window.location.port + "/api/vehicles/")
+             .subscribe( data => this.updateAllPositions(data)));
   }
 
-  /** Consume a message from the _stompService */
-  /*
-  onMessage = (message: Message) => {
-
-    let body = JSON.parse(message.body);
-
-    // update vehicle and notify
-    let newVehicle = new Vehicle(body.name,
+  updateAllPositions(data) {
+    data.forEach( (body) => {
+          console.log(body);
+          let newVehicle = new Vehicle(body.name,
                                  Number(body.lat),
                                  Number(body.longitude),
                                  body.timestamp,
-                                Number(body.speed));
-    this.subscription.next(newVehicle);
+                                Number(body.speed));     
+          this.subscription.next(newVehicle);
+    });
   }
-  */
 
   updateCenterVehicle(centerVehicle: Vehicle) {
     this.centerVehicle.next(centerVehicle);

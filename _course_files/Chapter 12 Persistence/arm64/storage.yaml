@@ -23,5 +23,5 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/mnt/some new/directory/structure/"
+    path: "/mnt/some new 3/directory/structure/"
     type: DirectoryOrCreate
