@@ -1,0 +1,21 @@
+# What do want?
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongo-pvc
+spec:
+  storageClassName: cloud-ssd
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 7Gi
+---
+# How do we want it implemented
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: cloud-ssd
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: gp2

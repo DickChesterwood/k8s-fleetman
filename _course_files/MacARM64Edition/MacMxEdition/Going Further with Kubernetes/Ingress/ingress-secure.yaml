@@ -1,0 +1,19 @@
+# from v1.14 of k8s
+# apiVersion: networking.k8s.io/v1beta1
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: secure-routing
+  annotations:
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: mycredentials
+    nginx.ingress.kubernetes.io/auth-realm: "Get lost unless you have a password"
+spec:
+  rules:
+    - host: queue.fleetman.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: fleetman-queue
+              servicePort: 8161

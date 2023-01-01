@@ -1,0 +1,80 @@
+# Demo of a STATEFUL set, Mongo clients need to be able to address the pods
+# by name, so a statefulset and headless service are used.
+# Clients will connect using eg mongodb://mongo-0.mongo,mongo-1.mongo,mongo-2.mongo/fleetman
+
+apiVersion: v1
+kind: Service
+metadata:
+ name: mongo
+ labels:
+   name: mongo
+spec:
+ ports:
+ - port: 27017
+   targetPort: 27017
+ clusterIP: None
+ selector:
+   role: mongo
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+ name: mongo
+spec:
+ selector:
+   matchLabels:
+     app: mongo
+ replicas: 3
+ serviceName: "mongo"
+ template:
+   metadata:
+     labels:
+        app: mongo
+   spec:
+     terminationGracePeriodSeconds: 10
+     containers:
+       - name: mongo
+         image: mongo:3.6.5-jessie
+         command:
+           - mongod
+           - "--replSet"
+           - rs0
+           - "--smallfiles"
+           - "--noprealloc"
+           - "--bind_ip"
+           - "0.0.0.0"
+         ports:
+           - containerPort: 27017
+         volumeMounts:
+           - name: mongo-persistent-storage
+             mountPath: /data/db
+       - name: mongo-sidecar
+         image: cvallance/mongo-k8s-sidecar
+         env:
+           - name: MONGO_SIDECAR_POD_LABELS
+             value: "role=mongo"
+           - name: KUBERNETES_MONGO_SERVICE_NAME
+             value: mongo
+ volumeClaimTemplates:
+  - metadata:
+      name: mongo-persistent-storage
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      storageClassName: "standard"
+      resources:
+        requests:
+          storage: 7Gi
+---
+# See https://github.com/cvallance/mongo-k8s-sidecar/issues/75
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: default-view
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: view
+subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: default
