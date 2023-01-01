@@ -1,0 +1,15 @@
+# from v1.14 of k8s
+# apiVersion: networking.k8s.io/v1beta1
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: public-routing
+spec:
+  rules:
+    - host: fleetman.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: fleetman-webapp
+              servicePort: 80
