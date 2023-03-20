@@ -23,18 +23,18 @@ metadata:
 spec:
  selector:
    matchLabels:
-     app: mongo
+     role: mongo
  replicas: 3
- serviceName: "mongo"
+ serviceName: mongo
  template:
    metadata:
      labels:
-        app: mongo
+        role: mongo
    spec:
      terminationGracePeriodSeconds: 10
      containers:
        - name: mongo
-         image: mongo:3.6.5-jessie
+         image: mongo:4.0.8
          command:
            - mongod
            - "--replSet"
