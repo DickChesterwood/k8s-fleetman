@@ -1,1 +1,0 @@
-curl -X POST --data-urlencode "payload={\"channel\": \"#alerts\", \"username\": \"webhookbot\", \"text\": \"This is posted to #alerts and comes from a bot named webhookbot.\", \"icon_emoji\": \":ghost:\"}"
