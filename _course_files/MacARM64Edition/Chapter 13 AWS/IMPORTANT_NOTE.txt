@@ -1,0 +1,1 @@
+Note that for this session, you need the INTEL/AMD x64 images, not the Mac M1/M2/Arm images. We are running on EC2 in this chapter which will probably be running on an Intel based chip.
