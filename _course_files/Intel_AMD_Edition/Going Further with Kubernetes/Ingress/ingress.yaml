@@ -2,9 +2,12 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: basic-routing
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+  ingressClassName: nginx
   rules:
-    - host: fleetman.com
+    - host: myfleetman.com
       http:
         paths:
           - path: /
@@ -14,3 +17,14 @@ spec:
                 name: fleetman-webapp
                 port: 
                   number: 80
+
+    - host: admin.myfleetman.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: fleetman-queue
+                port: 
+                  number: 8161
